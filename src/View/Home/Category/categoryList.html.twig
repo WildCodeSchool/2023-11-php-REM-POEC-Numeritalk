@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="/assets/images/favicon.png">
+
+    <title>Categories</title>
+
+</head>
+
+<body>
+
+<h1> Liste des categories </h1>
+   <ul >
+        {% for category in categoryListe %}
+        <a href="category/cat?id={{category.id}}">{{category.cat_name}}</a><br>
+        {% endfor %}
+   </ul>
+    
+</body>
+</html>
