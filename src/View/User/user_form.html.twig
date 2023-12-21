@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Inscription</title>
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <main class="container">
+            <a href="/">Inscription</a>
+            <h1>M'inscrire</h1>
+            {% for error in errors %}
+                <p>{{ error }}</p>
+            {% endfor %}
+
+            <form action="" method="post">
+                <div>
+                    <label for="lastname">Nom</label>
+                    <input id="lastname" name="lastname" type="text" placeholder="Entrez votre nom">
+                </div>
+                <div>
+                    <label for="firstname">Prénom</label>
+                    <input id="firstname" name="firstname" type="text" placeholder="Entrez votre prénom">
+                </div>
+                <div>
+                    <label for="dateOfBirth">Date de naissance</label>
+                    <input id="dateOfBirth" name="dateOfBirth" type="date" placeholder="Ajoutez votre date de naissance">
+                </div>
+                <div>
+                    <label for="emailAddress">Adresse mail</label>
+                    <input id="email" name="email" type="email" placeholder="Entrez votre adresse mail">
+                </div>
+                <div>
+                    <label for="Country">Pays de résidence</label>
+                    <input id="country" name="country" type="country" placeholder="Entrez le nom du pays où vous résidez">
+                </div>
+                <div>
+                    <label for="username">Identifiant</label>
+                    <input id="username" name="username" type="text" placeholder="Entrez un identifiant">
+                </div>
+                <div>
+                    <label for="password">Mot de passe</label>
+                    <input id="password" name="password" type="text" placeholder="Entrez un mot de passe">
+                </div>
+                <div>
+                    <label for="passwordVerification">Confirmer mot de passe</label>
+                    <input id="passwordVerification" name="passwordVerification" type="text" placeholder="Confirmez votre mot de passe">
+                </div>
+                <button>Envoyer</button>
+            </form>
+        </main>
+    </body>
+</html>

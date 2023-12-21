@@ -13,8 +13,10 @@
 </head>
 
 <body>
+    {% include 'Item/_navbar.html.twig' %}
     {% block content %}{% endblock %}
     {% block javascript %}{% endblock %}
+    {% include 'Item/_footer.html.twig' %}
 </body>
 </html>
 
