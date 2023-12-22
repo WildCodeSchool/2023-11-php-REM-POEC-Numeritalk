@@ -1,8 +1,10 @@
 <?php
 
-namespace Src\Model;
+namespace App\Model;
 
 interface ISubjectManager
 {
-    public function getListSubject();
+    public function insert(array $subject, int $user): string;
+
+    public function update(array $subject, int $id): bool;
 }

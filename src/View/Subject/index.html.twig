@@ -1,0 +1,17 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+<h1>Sujets</h1>
+
+        <p><a href="/subjects/add">Ajouter</a></p>
+
+        <ul>
+            {% for subject in subjectList %}
+            <li><a href="/subjects/show?id={{ subject.id }}">{{ subject.id }} . {{ subject.suj_name }}</a></li>
+            {% else %}
+            <li>Il n'y a pas encore de sujet dans cette catégorie. Voulez-vous en ajouter un ?</li>
+            {% endfor %}
+        </ul>
+
+    {% endblock %}
+
