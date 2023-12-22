@@ -13,8 +13,17 @@
 </head>
 
 <body>
-    {% block content %}{% endblock %}
-    {% block javascript %}{% endblock %}
+    <header>
+        <a href="/">Home</a>
+        <a href="/messages?subjectId=">Messages</a>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+        {% block javascript %}{% endblock %}
+    </main>
+    <footer>
+        © devdojd 2024
+    </footer>
 </body>
 </html>
 
