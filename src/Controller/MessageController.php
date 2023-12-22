@@ -22,7 +22,7 @@ class MessageController
         $messages = $this->messageManager->getListMessage($subjectId);
 
 
-        echo $this->twig->render('messages/list.html.twig', ['messages' => $messages]);
+        return $this->twig->render('messages/list.html.twig', ['messages' => $messages]);
     }
 
     public function postMessageForm()
@@ -35,7 +35,6 @@ class MessageController
 
 
             $this->messageManager->postMessage($subjectId, $messageContent, $userId);
-            echo"mon header";
             header('Location: /messages?subjectId=' . $subjectId);
         }
     }
@@ -43,7 +42,7 @@ class MessageController
     public function editMessageForm($messageId)
     {
         $message = $this->messageManager->getMessageById($messageId);
-        echo $this->twig->render('messages/edit_form.html.twig', ['message' => $message]);
+        return $this->twig->render('messages/edit_form.html.twig', ['message' => $message]);
     }
 
     public function editMessage()
