@@ -17,7 +17,7 @@ class SubjectController extends AbstractController
         return $this->twig->render('Subject/index.html.twig', [
             'subjectList' => $subjectList
         ]);
-    }  
+    }
 
     /**
      * Add a new subject
@@ -30,21 +30,20 @@ class SubjectController extends AbstractController
             $subject = array_map('trim', $_POST);
 
             // TODO validations (length, format...)
-            if (empty($subject['suj_name']) || strlen($subject['suj_name']) === 0 || strlen($subject['suj_name']) >255) {
-               $errors[] = "Veuillez saisir un sujet";
-            } 
-            
+            if (
+                empty($subject['suj_name']) || strlen($subject['suj_name']) > 255
+            ) {
+                $errors[] = "Veuillez saisir un sujet";
+            }
+
             $user = 1;
             // ligne du dessus à supprimer par la suite
-            if(empty($errors)) {
+            if (empty($errors)) {
                 $subjectManager = new SubjectManager();
                 $subjectManager->insert($subject, $user);
                 header('Location:/subjects');
             }
             return $this->twig->render('Subject/add.html.twig');
-
-            // if validation is ok, insert and redirection
-            return null;
         }
 
         return $this->twig->render('Subject/add.html.twig');
@@ -61,7 +60,7 @@ class SubjectController extends AbstractController
         return $this->twig->render('Subject/show.html.twig', [
             'subject' => $subject
         ]);
-    }    
+    }
 
     /**
      * Edit a specific subject
