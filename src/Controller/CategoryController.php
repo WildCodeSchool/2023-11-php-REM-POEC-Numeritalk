@@ -10,30 +10,22 @@ class CategoryController extends AbstractController
 
     public function __construct(CategoryManager $categoryManager = null)
     {
+        parent::__construct();
         $this->categoryManager = $categoryManager ?? new CategoryManager();
     }
 
-    /**
-     * Display a category object list at Admin/categoryList
-     */
     public function indexCategoryAdmin(): string
     {
         $categoryList = $this->categoryManager->getCategoryList();
         return $this->twig->render('Admin/categoryAdmin.html.twig', ['categoryList' => $categoryList]);
     }
 
-    /**
-     * Display a category object list at Home/Category/categoryList
-     */
     public function getCategoryList(): string
     {
         $categoryList = $this->categoryManager->getCategoryList();
         return $this->twig->render('Home/Category/categoryList.html.twig', ['categoryList' => $categoryList]);
     }
 
-    /**
-     * Add a category, redirect to admin/category page
-     */
     public function addCategory()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -43,9 +35,6 @@ class CategoryController extends AbstractController
         }
     }
 
-    /**
-     * Delete id category redirect to admin/category page
-     */
     public function deleteCategory()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -56,9 +45,6 @@ class CategoryController extends AbstractController
         }
     }
 
-    /**
-     * Update category redirect to admin/category page
-     */
     public function updateCategory()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
