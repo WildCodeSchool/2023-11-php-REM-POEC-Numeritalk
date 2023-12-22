@@ -13,7 +13,15 @@
 </head>
 
 <body>
-    {% block content %}{% endblock %}
+    {% include 'Item/_navbar.html.twig' %}
+    <header>
+        <a href="/">Home</a>
+        <a href="/messages?subjectId=">Messages</a>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    {% include 'Item/_footer.html.twig' %}
     {% block javascript %}{% endblock %}
 </body>
 </html>

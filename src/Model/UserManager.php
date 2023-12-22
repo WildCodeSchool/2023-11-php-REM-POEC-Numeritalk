@@ -8,6 +8,7 @@ class UserManager extends AbstractManager implements IUserManager
 {
     public const TABLE = "utilisateur";
 
+
     public function getUser(string $username): array
     {
         $statement = $this->pdo->prepare("SELECT * FROM " . self::TABLE . " WHERE uti_name = :username");
@@ -21,7 +22,6 @@ class UserManager extends AbstractManager implements IUserManager
         where utilisateur.id = :id");
         $stmt->bindValue(':id', $idUsername, PDO::PARAM_INT);
         $stmt->execute();
-
         return (int)$stmt->fetchColumn();
     }
 
