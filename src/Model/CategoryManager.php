@@ -6,9 +6,7 @@ use PDO;
 
 class CategoryManager extends AbstractManager
 {
-
     public const TABLE = 'categorie';
-
 
     public function getCategoryList(): array
     {

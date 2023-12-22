@@ -3,35 +3,34 @@
 namespace App\Controller;
 
 use App\Model\CategoryManager;
-// use App\Controller\SubjectController;
 
+// use App\Controller\SubjectController;
 class CategoryController extends AbstractController
 {
-
-
-
-
     public function getCategoryList(): string
     {
         $categoryManager = new CategoryManager();
         $categoryList = $categoryManager->getCategoryList();
         // var_dump($categoryList);
-        return $this->twig->render('Home/Category/categoryList.html.twig', ['categoryListe' => $categoryList]);
+        return $this->twig->render(
+            'Home/Category/categoryList.html.twig',
+            ['categoryListe' => $categoryList]
+        );
     }
 
     /**
-     * cette fonction va retourner une chaine de caractere
+     * Cette fonction va retourner une chaîne de caractère
      */
     public function getSubjectList(int $idCategory)
     {
         echo "je suis dans le controller " . $idCategory;
 
-        //appel de la methode pour sujet Controller
+        // Appel de la méthode pour sujet Controller
         // $subjectController = new SubjectController();
         // $subjectList = $subjectController->getSubjectList($idCategory);
 
-        // page où il aura la liste des sujets
-        // je devrais mettre l'objet sujet avec l'objet
+        // Page où il aura la liste des sujets
+        // Je devrais mettre l'objet sujet avec l'objet
         // return $this->$twig->render('');
     }
 }
