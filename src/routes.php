@@ -13,9 +13,9 @@ return [
     // 'items/show' => ['ItemController', 'show', ['id']],
     // 'items/add' => ['ItemController', 'add',],
     // 'items/delete' => ['ItemController', 'delete',],
-    'user/login'=>['UserController','login',],
-    'user/register' =>['UserController','register',],
-    'category' =>['CategoryController','getCategoryList',],
-    'category/cat'=>['CategoryController','getSubjectList',['id'],],
+    'user/login' => ['UserController', 'login',],
+    'user/register' => ['UserController', 'register',],
+    'category' => ['CategoryController', 'getCategoryList',],
+    'category/cat' => ['CategoryController', 'getSubjectList', ['id'],],
 
 ];

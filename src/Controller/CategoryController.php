@@ -4,33 +4,68 @@ namespace App\Controller;
 
 use App\Model\CategoryManager;
 
-// use App\Controller\SubjectController;
 class CategoryController extends AbstractController
 {
-    public function getCategoryList(): string
+    private $categoryManager;
+
+    public function __construct(CategoryManager $categoryManager = null)
     {
-        $categoryManager = new CategoryManager();
-        $categoryList = $categoryManager->getCategoryList();
-        // var_dump($categoryList);
-        return $this->twig->render(
-            'Home/Category/categoryList.html.twig',
-            ['categoryListe' => $categoryList]
-        );
+        $this->categoryManager = $categoryManager ?? new CategoryManager();
     }
 
     /**
-     * Cette fonction va retourner une chaîne de caractère
+     * Display a category object list at Admin/categoryList
      */
-    public function getSubjectList(int $idCategory)
+    public function indexCategoryAdmin(): string
     {
-        echo "je suis dans le controller " . $idCategory;
+        $categoryList = $this->categoryManager->getCategoryList();
+        return $this->twig->render('Admin/categoryAdmin.html.twig', ['categoryList' => $categoryList]);
+    }
 
-        // Appel de la méthode pour sujet Controller
-        // $subjectController = new SubjectController();
-        // $subjectList = $subjectController->getSubjectList($idCategory);
+    /**
+     * Display a category object list at Home/Category/categoryList
+     */
+    public function getCategoryList(): string
+    {
+        $categoryList = $this->categoryManager->getCategoryList();
+        return $this->twig->render('Home/Category/categoryList.html.twig', ['categoryList' => $categoryList]);
+    }
 
-        // Page où il aura la liste des sujets
-        // Je devrais mettre l'objet sujet avec l'objet
-        // return $this->$twig->render('');
+    /**
+     * Add a category, redirect to admin/category page
+     */
+    public function addCategory()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $credential = array_map('trim', $_POST);
+            $this->categoryManager->addCategory($credential);
+            header('Location: /admin/category');
+        }
+    }
+
+    /**
+     * Delete id category redirect to admin/category page
+     */
+    public function deleteCategory()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $credential = array_map('trim', $_POST);
+            $this->categoryManager->deleteCategory($credential);
+            header('Location: /admin/category');
+            exit();
+        }
+    }
+
+    /**
+     * Update category redirect to admin/category page
+     */
+    public function updateCategory()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $credential = array_map('trim', $_POST);
+            $this->categoryManager->updateCategory($credential);
+            header('Location: /admin/category');
+            exit();
+        }
     }
 }
