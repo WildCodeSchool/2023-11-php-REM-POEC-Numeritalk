@@ -2,7 +2,7 @@
 
 namespace Src\Model;
 
-interface ISubjectManager 
+interface ISubjectManager
 {
     public function getListSubject();
 }

@@ -2,16 +2,16 @@
 
 namespace Src\Controller;
 
-class CategoryController 
+class CategoryController
 {
     private $categoryManager;
 
-    public function __construct(\Src\Model\ICategoryManager $categoryManager) 
+    public function __construct(\Src\Model\ICategoryManager $categoryManager)
     {
         $this->categoryManager = $categoryManager;
     }
 
-    public function listCategories() 
+    public function listCategories()
     {
         return $this->categoryManager->getListCategory();
     }

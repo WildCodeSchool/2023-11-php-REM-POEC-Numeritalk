@@ -2,7 +2,7 @@
 
 namespace Src\Model;
 
-interface ICategoryManager 
+interface ICategoryManager
 {
     public function getListCategory();
 }
