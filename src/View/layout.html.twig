@@ -14,9 +14,15 @@
 
 <body>
     {% include 'Item/_navbar.html.twig' %}
-    {% block content %}{% endblock %}
-    {% block javascript %}{% endblock %}
+    <header>
+        <a href="/">Home</a>
+        <a href="/messages?subjectId=">Messages</a>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
     {% include 'Item/_footer.html.twig' %}
+    {% block javascript %}{% endblock %}
 </body>
 </html>
 
