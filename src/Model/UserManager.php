@@ -16,9 +16,11 @@ class UserManager extends AbstractManager implements IUserManager
         return $statement->fetch();
     }
 
-    public function getCountMessage(int $idUsername): int{
-        $stmt = $this->pdo->prepare("SELECT COUNT(*) FROM ".self::TABLE." INNER JOIN message on utilisateur.id = message.utilisateur
-        where utilisateur.id = :id");
+    public function getCountMessage(int $idUsername): int
+    {
+        $stmt = $this->pdo->prepare("SELECT COUNT(*) FROM " . self::TABLE . " 
+        INNER JOIN message on utilisateur.id = message.utilisateur
+         where utilisateur.id = :id");
         $stmt->bindValue(':id', $idUsername, PDO::PARAM_INT);
         $stmt->execute();
 
@@ -28,7 +30,8 @@ class UserManager extends AbstractManager implements IUserManager
     public function insertUser(array $credentials): int
     {
         $role = 1;
-        $statement = $this->pdo->prepare("INSERT INTO " . self::TABLE . " (uti_name, uti_password, role) VALUES (:username, :password, :role)");
+        $statement = $this->pdo->prepare("INSERT INTO " . self::TABLE . " (uti_name, uti_password, role) 
+        VALUES (:username, :password, :role)");
         $statement->bindValue(':username', $credentials['username']);
         $statement->bindValue(':password', password_hash($credentials['password'], PASSWORD_DEFAULT));
         $statement->bindValue(':role', $role);

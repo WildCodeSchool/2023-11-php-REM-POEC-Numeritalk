@@ -6,8 +6,6 @@ use App\Model\UserManager;
 
 class UserController extends AbstractController
 {
-   
-
     public function login(): string
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -28,7 +26,8 @@ class UserController extends AbstractController
     /**
      * logout the user and delete the user's session
      */
-    public function logout(){
+    public function logout()
+    {
         session_destroy();
         header('Location: /');
     }
@@ -36,11 +35,10 @@ class UserController extends AbstractController
     public function profil(): string
     {
         $userManager = new UserManager();
-        $countMessage=$userManager->getCountMessage($_SESSION['user_id']);
-        
+        $countMessage = $userManager->getCountMessage($_SESSION['user_id']);
+
 
         return $this->twig->render('User/profile.html.twig', ['countMessage' => $countMessage]);
-
     }
 
     public function register(): string

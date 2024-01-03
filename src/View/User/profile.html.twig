@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="/assets/images/favicon.png">
+
+    <title>Profil {{user.uti_name}}</title>
+
+</head>
+
+<body>
+
+    <!-- essayer de voir comment ajouter le block content avec guillaume -->
+
+    <a href="/">Accueil </a><br>
+
+    <h1> Bienvenue sur ton profil </h1>
+
+    {% block content %}{% endblock %}
+
+    <ul>
+        <ol>Nombre de messsages postés : {{countMessage}} </ol>
+    </ul>
+    
+</body>
+</html>
