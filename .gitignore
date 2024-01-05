@@ -2,6 +2,7 @@
 /temp/*
 .phpcs-cache
 *.cache
+db.php.dist
 db.php
 .idea
 .vscode

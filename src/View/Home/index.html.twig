@@ -1,6 +1,22 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <h1>Hello Wilder !</h1>
-    <p>Find a complete CRUD example on <a href="/items">/items</a> page.</p>
+    {% if user.uti_name is defined %}
+
+    <h1>Hello {{user.uti_name}}</h1>
+    <a href="user/logout">Se déconnecter</a><br>
+
+    <a href="user/profil"> Profil Utilisateur</a><br>
+        {% if user.role == 2 %}
+            <a href="admin">Dashboard administrateur </a><br>
+        {% endif %}
+    {% else %}
+        <h1>Hello Wilder </h1>
+        <a href="user/login">Se connecter </a><br>
+        <a href="user/register">S'inscrire </a><br>
+    {% endif %}
+
+    <a href="category">Discussion </a>
+    
+    
 {% endblock %}

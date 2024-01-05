@@ -13,30 +13,30 @@ class MessageManager implements IMessageManager
         $this->pdo = $pdo;
     }
 
+    /**
+     * Get message's list from database
+     */
     public function getListMessage($subjectId)
     {
-
-
-        $sql = "SELECT message.id, message.mes_contenu, sujet.suj_name, utilisateur.uti_name
+        $sql = "SELECT message.id, message.mes_contenu, sujet.suj_name as sujet, 
+        utilisateur.uti_name,sujet.id as id_sujet
          FROM message 
          INNER JOIN sujet ON message.sujet = sujet.id 
          INNER JOIN utilisateur ON message.utilisateur = utilisateur.id 
          WHERE message.sujet = :subjectId";
         $stmt = $this->pdo->prepare($sql);
-
-        // Exécutez la requête et vérifiez les erreurs
+        // execute request and check error
         if (!$stmt->execute(['subjectId' => $subjectId])) {
             return [];
         }
-
-        // Récupérez les résultats
+        // get result
         $results = $stmt->fetchAll();
-
-        // Affichez les résultats pour le débogage
-
         return $results;
     }
 
+    /**
+     * Get a message from the database
+     */
     public function getMessageById($messageId)
     {
         $stmt = $this->pdo->prepare("SELECT * FROM message WHERE id = ?");
@@ -44,6 +44,9 @@ class MessageManager implements IMessageManager
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    /**
+     * Add a message in the database
+     */
     public function postMessage($subjectId, $messageContent, $userId)
     {
         $sql = "INSERT INTO message (mes_contenu, utilisateur, sujet) VALUES (?, ?, ?)";
@@ -51,6 +54,9 @@ class MessageManager implements IMessageManager
         $stmt->execute([$messageContent, $userId, $subjectId]);
     }
 
+    /**
+     * Edit a message in the database
+     */
     public function editMessage($messageId, $newContent)
     {
         $sql = "UPDATE message SET mes_contenu = ? WHERE id = ?";
@@ -58,6 +64,9 @@ class MessageManager implements IMessageManager
         $stmt->execute([$newContent, $messageId]);
     }
 
+    /**
+     * Delete a message in the database
+     */
     public function deleteMessage($messageId)
     {
         $sql = "DELETE FROM message WHERE id = ?";
