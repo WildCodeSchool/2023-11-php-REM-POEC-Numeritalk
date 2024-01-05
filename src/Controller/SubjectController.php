@@ -8,7 +8,6 @@ use App\Model\IMessageManager;
 
 class SubjectController extends AbstractController
 {
-
     private $messageController;
 
     public function __construct(IMessageManager $messageManager)
@@ -56,6 +55,7 @@ class SubjectController extends AbstractController
                 return $subjectId;
             }
         }
+        return 0;
     }
 
     /**
@@ -121,7 +121,7 @@ class SubjectController extends AbstractController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // call add method and return subject's id in subjectId
             $subjectId = $this->add($categoryId);
-            //call postMessageForm method from MessageController 
+            //call postMessageForm method from MessageController
             $this->messageController->postMessageForm($subjectId);
         }
     }

@@ -7,8 +7,6 @@ use PDO;
 class UserManager extends AbstractManager implements IUserManager
 {
     public const TABLE = "utilisateur";
-
-
     /**
      * Get a user from the database
      */

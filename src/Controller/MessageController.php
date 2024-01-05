@@ -29,10 +29,9 @@ class MessageController extends AbstractController
 
         return $this->twig->render('messages/list.html.twig', ['messages' => $messages]);
     }
-
     /**
      * Add a message with a subject's id
-     * parameter : string subjectId 
+     * parameter : string subjectId
      */
     public function postMessageForm($subjectId)
     {

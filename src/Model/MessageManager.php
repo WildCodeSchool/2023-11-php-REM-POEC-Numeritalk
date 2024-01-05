@@ -18,7 +18,8 @@ class MessageManager implements IMessageManager
      */
     public function getListMessage($subjectId)
     {
-        $sql = "SELECT message.id, message.mes_contenu, sujet.suj_name as sujet, utilisateur.uti_name,sujet.id as id_sujet
+        $sql = "SELECT message.id, message.mes_contenu, sujet.suj_name as sujet, 
+        utilisateur.uti_name,sujet.id as id_sujet
          FROM message 
          INNER JOIN sujet ON message.sujet = sujet.id 
          INNER JOIN utilisateur ON message.utilisateur = utilisateur.id 

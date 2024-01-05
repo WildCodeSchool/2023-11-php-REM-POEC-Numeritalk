@@ -7,8 +7,6 @@ use PDO;
 class SubjectManager extends AbstractManager implements ISubjectManager
 {
     public const TABLE = 'sujet';
-
-
     /**
      * Get a subject's list from the database
      */
@@ -31,9 +29,10 @@ class SubjectManager extends AbstractManager implements ISubjectManager
     /**
      * Insert new subject in database
      */
-    public function insert(array $subject, int $user, $categoryId): string
+    public function insert(array $subject, int $user, $categoryId): int
     {
-        $statement = $this->pdo->prepare("INSERT INTO " . self::TABLE . " (suj_name, categorie, utilisateur) VALUES (:name, :category, :user)");
+        $statement = $this->pdo->prepare("INSERT INTO " . self::TABLE . " (suj_name, categorie, utilisateur) 
+        VALUES (:name, :category, :user)");
         $statement->bindValue('name', $subject['subjectName'], PDO::PARAM_STR);
         $statement->bindValue('category', $categoryId, PDO::PARAM_INT);
         $statement->bindValue('user', $user, PDO::PARAM_INT);

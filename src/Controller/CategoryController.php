@@ -7,7 +7,7 @@ use App\Model\CategoryManager;
 class CategoryController extends AbstractController
 {
     /**
-     * Display category's list in admin's space 
+     * Display category's list in admin's space
      */
     public function indexCategoryAdmin(): string
     {
@@ -15,7 +15,6 @@ class CategoryController extends AbstractController
         $categoryList = $categoryManager->getCategoryList();
         return $this->twig->render('Admin/categoryAdmin.html.twig', ['categoryList' => $categoryList]);
     }
-
     /**
      * Get category's list
      * return : string, categoryList.html.twig
@@ -54,7 +53,6 @@ class CategoryController extends AbstractController
             exit();
         }
     }
-
     /**
      * Change category's name and forward to indexCategoryAdmin
      */

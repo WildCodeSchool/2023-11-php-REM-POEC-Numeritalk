@@ -32,7 +32,7 @@ return [
     'subjects/show' => ['SubjectController', 'show', ['id']],
     'subjects/edit' => ['SubjectController', 'edit', ['id']],
     'subjects/delete' => ['SubjectController', 'delete',],
-    
+
     // Path Message
     'messages' => ['MessageController', 'listMessages', ['subjectId']],
     'messages/post' => ['MessageController', 'postMessageForm',['subjectId']],
