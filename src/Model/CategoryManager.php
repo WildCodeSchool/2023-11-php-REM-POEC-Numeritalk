@@ -42,11 +42,14 @@ class CategoryManager extends AbstractManager
         $stmt->execute();
     }
 
+    /**
+     * update a category in database
+     */
     public function updateCategory(array $credential)
     {
         $stmt = $this->pdo->prepare("UPDATE " . self::TABLE . " SET cat_name = :categoryName 
         WHERE id = :categoryId ");
-        $stmt ->bindValue(':categoryName', $credential['nameCategory']);
+        $stmt->bindValue(':categoryName', $credential['nameCategory']);
         $stmt->bindValue(':categoryId', $credential['categoryId']);
         $stmt->execute();
     }

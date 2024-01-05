@@ -1,0 +1,10 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+<h1>Ajouter un nouveau sujet</h1>
+    <ul>
+        <p><a href="/subjects/add">Ajouter</a></p>
+
+        {% include 'Subject/_form.html.twig' %}
+    </ul>
+{% endblock %}

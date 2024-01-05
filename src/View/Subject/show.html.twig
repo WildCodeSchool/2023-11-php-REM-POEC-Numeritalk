@@ -1,0 +1,12 @@
+{% extends 'layout.html.twig' %}
+{% block content %}
+    <h1>Sujet : {{subject.suj_name}}</h1>
+
+  <form action="/subjects/delete" method="POST">
+        <input type="hidden" name="id" value="{{ subject.id }}">
+        <button>Supprimer</button>
+    </form>
+    <a href="/subjects/?id={{ subject.id }}">Retour</a>
+
+    <a href="/subjects/edit?id={{ subject.id }}">Modifier</a>
+{% endblock content %}

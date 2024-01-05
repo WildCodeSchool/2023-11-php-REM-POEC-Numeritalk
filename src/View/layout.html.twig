@@ -12,8 +12,14 @@
     {% block stylesheet %}{% endblock %}
 </head>
 
-<body>
-    {% block content %}{% endblock %}
+<body>    
+    <header>
+        <a href="/">Home</a>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    {% include 'Item/_footer.html.twig' %}
     {% block javascript %}{% endblock %}
 </body>
 </html>
