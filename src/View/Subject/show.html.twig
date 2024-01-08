@@ -6,19 +6,7 @@
         <input type="hidden" name="id" value="{{ subject.id }}">
         <button>Supprimer</button>
     </form>
-    <a href="/subjects/?id={{ subject.id }}">Back</a>
+    <a href="/subjects/?id={{ subject.id }}">Retour</a>
 
     <a href="/subjects/edit?id={{ subject.id }}">Modifier</a>
-
-
-      {# <p><a href="subjects/show">Liste des sujets</a>
-            <ul>
-                {% for subject in subjectList %}
-                <li><a href="subjects/show?id={{ subject.id }}">{{ subject.id }} . {{ subject.suj_name }}</a></li>
-                {% else %}
-                <li>Rien à afficher</li>
-                {% endfor %}
-            </ul>
-        </p> #}
-
 {% endblock content %}

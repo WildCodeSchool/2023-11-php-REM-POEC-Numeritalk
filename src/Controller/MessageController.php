@@ -6,45 +6,59 @@ use App\Model\IMessageManager;
 use App\Model\MessageManager;
 use Twig\Environment;
 
-class MessageController
+class MessageController extends AbstractController
 {
     private $messageManager;
-    private $twig;
 
-    public function __construct(IMessageManager $messageManager, Environment $twig)
+    public function __construct(IMessageManager $messageManager)
     {
+        parent::__construct();
         $this->messageManager = $messageManager;
-        $this->twig = $twig;
     }
 
-    public function listMessages(string $subjectId)
+    /**
+     * Get message's list with a subject's id
+     * type parameter : string subjectId
+     * return string : list.html.twig
+     * object : messages
+     */
+    public function listMessages(string $subjectId): string
     {
         $messages = $this->messageManager->getListMessage($subjectId);
 
 
         return $this->twig->render('messages/list.html.twig', ['messages' => $messages]);
     }
-
-    public function postMessageForm()
+    /**
+     * Add a message with a subject's id
+     * parameter : string subjectId
+     */
+    public function postMessageForm($subjectId)
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $credential = array_map('trim', $_POST);
-            $subjectId = $credential['subjectId'];
             $messageContent = $credential['messageContent'];
-            $userId = $credential['userId'];
-
-
+            // get user's id session
+            $userId = $_SESSION['user_id'] ?? null;
             $this->messageManager->postMessage($subjectId, $messageContent, $userId);
             header('Location: /messages?subjectId=' . $subjectId);
         }
     }
 
-    public function editMessageForm($messageId)
+    /**
+     * display edit message form with a message's id
+     * parameter : string messageId
+     * return : string edit_form.html.twig
+     */
+    public function editMessageForm($messageId): string
     {
         $message = $this->messageManager->getMessageById($messageId);
         return $this->twig->render('messages/edit_form.html.twig', ['message' => $message]);
     }
 
+    /**
+     * Edit a message
+     */
     public function editMessage()
     {
         error_log("editMessage called");
@@ -78,22 +92,26 @@ class MessageController
 
 
 
+    /**
+     * Delete a message with message's id
+     * parameter : string messageId
+     */
     public function deleteMessage($messageId)
     {
-    // Récupérer le subjectId du message avant de le supprimer
+        // Get subjectId message before delete them
         $message = $this->messageManager->getMessageById($messageId);
         if (!$message) {
-        // Gérer l'erreur si le message n'existe pas
+            //if message not exist
             header('HTTP/1.1 404 Not Found');
             echo 'Message not found';
             exit();
         }
         $subjectId = $message['sujet'];
 
-    // Supprimer le message
+        // delete message
         $this->messageManager->deleteMessage($messageId);
 
-    // Rediriger vers la liste des messages pour le sujet concerné
+        // redirect to message's list with subject's id
         header('Location: /messages?subjectId=' . $subjectId);
     }
 }

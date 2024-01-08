@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="/assets/images/favicon.png">
+
+    <title>Espace catégorie</title>
+
+    <link rel="stylesheet" href="/assets/css/style.css">
+    {% block stylesheet %}{% endblock %}
+</head>
+
+<body>
+    <h1> Bienvenue dans l'espace catégorie </h1>
+
+<a href="/">Accueil</a><br>
+    <ul>
+        <a href="#" onclick="display('form')">Ajouter une catégorie </a><br>
+        <form action ="category/add" method="POST" id="form">
+            <input type="text" name="nameCategory" id="category"><br>
+            <input type="submit" name="submit" value="ajouter">
+        </form>
+        <a href="#" onclick="displayUpdate('categoryFieldUpdate','updateButton')" id="updateLink">Editer une catégorie </a><br>
+        <a href="#" onclick="display('deleteButton')" id="deleteLink">Supprimer une catégorie </a>
+        <table>
+            <tr>
+                <th>Liste des catégories </th>
+            <tr>    
+            <form action="" method="post" id="formRadio">
+            {% for category in categoryList %}
+            <tr>
+                <td><span>{{category.cat_name}}</span></td>
+                <td><input type="radio" name="categoryId" value={{category.id}}></td>
+                   
+            </tr>
+            {% endfor %}
+            <button type="submit" id="deleteButton" >Supprimer</button> 
+            <input type="text" name="nameCategory" id="categoryFieldUpdate"><br>
+            <button type="submit" id="updateButton">Modifier</button>
+        </form>
+        </table>            
+    </ul>
+<script>
+    function display(param){
+        let button = document.getElementById(param);
+        button.setAttribute("style", "display : flex ");
+       
+    }
+    function displayUpdate(param,param2){
+        let button = document.getElementById(param2);
+        let field = document.getElementById(param);
+        button.setAttribute("style", "display : flex ");
+        field.setAttribute("style", "display : flex ");
+       
+    }
+
+            {# function to change form's action to put a route into form's action  #}
+            document.addEventListener('DOMContentLoaded', function() {
+                var link = document.getElementById('deleteLink');
+            var form = document.getElementById('formRadio');
+
+            link.addEventListener('click', function(e) {
+                e.preventDefault(); // Empêche le comportement par défaut du lien
+                form.action = 'category/delete'; // Change l'attribut action du formulaire
+            });
+        });
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+                var link = document.getElementById('updateLink');
+            var form = document.getElementById('formRadio');
+
+            link.addEventListener('click', function(e) {
+                e.preventDefault(); // Empêche le comportement par défaut du lien
+                form.action = 'category/edit'; // Change l'attribut action du formulaire
+            });
+        });
+</script>
+    <style>
+        #form{
+            display:none;
+        }
+        #category.id{
+            display:none;
+        }
+        #form2{
+            display:none;
+        }
+        #deleteButton{
+            display:none;
+        }
+        #updateButton{
+            display:none;
+        }
+        #categoryFieldUpdate{
+            display : none;
+        }
+        
+    </style>
+</body>
+</html>

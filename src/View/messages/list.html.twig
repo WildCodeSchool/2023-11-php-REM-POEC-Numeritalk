@@ -1,7 +1,7 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <h1>Sujet : {{ messages[0].suj_name}}<br></h1>
+    <h1>Sujet : {{ messages[0].sujet}}<br></h1><br>
         {% if messages is not empty %}
             <div class="bloc">
                 {% for message in messages %}
@@ -10,8 +10,9 @@
                             Utilisateur: {{ message.uti_name }}
                         </p>
                         <p>
-                           Contenu: {{ message.mes_contenu }}
+                           {{ message.mes_contenu }}
                         </p>
+                        {% if user.uti_name is defined and user.uti_name == message.uti_name %}
                         <div class="blocMessageBouton">
                             <button class="noselect" onclick="openEditForm('{{ message.id }}', '{{ message.mes_contenu | escape('js') }}')">
                                 <span class="text">Modifier</span>
@@ -32,40 +33,35 @@
                                 </span>
                             </a>
                         </div>
+                        {% endif %}
                     </div>
                 {% endfor %}
             </div>
         {% else %}
             <p>Aucun message à afficher.</p>
         {% endif %}
-
-
-            <a href="#" onclick="display('form')" class="newpost"> Poster un message</a>
-            <form action="messages/post" method="POST" id="form">
-                <label for="subjectId">Subject ID:</label>
-                <input type="number" id="subjectId" name="subjectId" required><br><br>
-
-                <label for="messageContent">Message Content:</label>
+        {% if user.uti_name is defined %}
+            <a onclick="display('form')" class="newpost"> Poster un message</a>
+            <form action="messages/post?subjectId={{messages[0].id_sujet}}" method="POST" id="form">
+                <label for="messageContent">Message :</label>
                 <textarea id="messageContent" name="messageContent" required></textarea><br><br>
-
-                <label for="userId">User ID:</label>
-                <input type="number" id="userId" name="userId" required><br><br>
-
-                <input type="submit" value="Post Message" name="submit">
+                <input type="submit" value="Poster Message" name="submit">
             </form>
-
         <div id="editForm" class="modal">
             <div class="modal-content">
                 <span onclick="closeEditForm()">&times;</span>
                 <form action="/messages/update" method="POST">
                     <input type="hidden" id="editMessageId" name="messageId">
                     <input type="hidden" id="editSubjectId" name=""
-                    <label for="editMessageContent">Message Content:</label>
+                    <label for="editMessageContent">Nouveau message :</label>
                     <textarea id="editMessageContent" name="newContent" ></textarea><br><br>
-                    <input type="submit" value="Edit Message">
+                    <input type="submit" value="Editer Message">
                 </form>
             </div>
          </div>
+         {% else %}
+         vous devez vous connecter pour poster un message
+         {% endif %}
     <script>
         function display(param) {
             var element = document.getElementById(param);
@@ -82,5 +78,4 @@
             document.getElementById('editForm').style.display = 'none';
         }
     </script>
-
 {% endblock %}

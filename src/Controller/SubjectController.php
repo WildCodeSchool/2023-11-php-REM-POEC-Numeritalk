@@ -3,16 +3,27 @@
 namespace App\Controller;
 
 use App\Model\SubjectManager;
+use App\Controller\MessageController;
+use App\Model\IMessageManager;
 
 class SubjectController extends AbstractController
 {
+    private $messageController;
+
+    public function __construct(IMessageManager $messageManager)
+    {
+        // Si vous avez besoin d'appeler le constructeur du parent
+        parent::__construct();
+
+        $this->messageController = new MessageController($messageManager);
+    }
     /**
      * List subjects
      */
-    public function index(): string
+    public function index(int $id): string
     {
         $subjectManager = new SubjectManager();
-        $subjectList = $subjectManager->selectAll();
+        $subjectList = $subjectManager->getListSubject($id);
         // ou alors : $subjects = $subjectManager->selectAll();
         return $this->twig->render('Subject/index.html.twig', [
             'subjectList' => $subjectList
@@ -22,7 +33,7 @@ class SubjectController extends AbstractController
     /**
      * Add a new subject
      */
-    public function add(): ?string
+    public function add($categoryId): int
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // clean $_POST data
@@ -31,22 +42,20 @@ class SubjectController extends AbstractController
 
             // TODO validations (length, format...)
             if (
-                empty($subject['suj_name']) || strlen($subject['suj_name']) > 255
+                empty($subject['subjectName']) || strlen($subject['subjectName']) > 255
             ) {
                 $errors[] = "Veuillez saisir un sujet";
             }
 
-            $user = 1;
-            // ligne du dessus à supprimer par la suite
+            // get user's id session in $user
+            $user = $_SESSION['user_id'] ?? null;
             if (empty($errors)) {
                 $subjectManager = new SubjectManager();
-                $subjectManager->insert($subject, $user);
-                header('Location:/subjects');
+                $subjectId = $subjectManager->insert($subject, $user, $categoryId);
+                return $subjectId;
             }
-            return $this->twig->render('Subject/add.html.twig');
         }
-
-        return $this->twig->render('Subject/add.html.twig');
+        return 0;
     }
 
     /**
@@ -101,6 +110,19 @@ class SubjectController extends AbstractController
             $subjectManager->delete((int)$id);
 
             header('Location: /subjects');
+        }
+    }
+
+    /**
+     * add a subject and message, and call
+     */
+    public function addSubjectAndMessage($categoryId)
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // call add method and return subject's id in subjectId
+            $subjectId = $this->add($categoryId);
+            //call postMessageForm method from MessageController
+            $this->messageController->postMessageForm($subjectId);
         }
     }
 }

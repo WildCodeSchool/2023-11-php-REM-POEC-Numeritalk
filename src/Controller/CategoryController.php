@@ -1,18 +1,69 @@
 <?php
 
-namespace Src\Controller;
+namespace App\Controller;
 
-class CategoryController
+use App\Model\CategoryManager;
+
+class CategoryController extends AbstractController
 {
-    private $categoryManager;
-
-    public function __construct(\Src\Model\ICategoryManager $categoryManager)
+    /**
+     * Display category's list in admin's space
+     */
+    public function indexCategoryAdmin(): string
     {
-        $this->categoryManager = $categoryManager;
+        $categoryManager = new CategoryManager();
+        $categoryList = $categoryManager->getCategoryList();
+        return $this->twig->render('Admin/categoryAdmin.html.twig', ['categoryList' => $categoryList]);
+    }
+    /**
+     * Get category's list
+     * return : string, categoryList.html.twig
+     */
+    public function getCategoryList(): string
+    {
+        $categoryManager = new CategoryManager();
+        $categoryList = $categoryManager->getCategoryList();
+        return $this->twig->render('Home/Category/categoryList.html.twig', ['categoryList' => $categoryList]);
     }
 
-    public function listCategories()
+    /**
+     * Add a category, forward to indexCategoryAdmin
+     */
+    public function addCategory()
     {
-        return $this->categoryManager->getListCategory();
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $credential = array_map('trim', $_POST);
+            $categoryManager = new CategoryManager();
+            $categoryManager->addCategory($credential);
+            header('Location: /admin/category');
+            exit();
+        }
+    }
+
+    /**
+     * Delete a category, forward to indexCategoryAdmin
+     */
+    public function deleteCategory()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $credential = array_map('trim', $_POST);
+            $categoryManager = new CategoryManager();
+            $categoryManager->deleteCategory($credential);
+            header('Location: /admin/category');
+            exit();
+        }
+    }
+    /**
+     * Change category's name and forward to indexCategoryAdmin
+     */
+    public function updateCategory()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $credential = array_map('trim', $_POST);
+            $categoryManager = new CategoryManager();
+            $categoryManager->updateCategory($credential);
+            header('Location: /admin/category');
+            exit();
+        }
     }
 }

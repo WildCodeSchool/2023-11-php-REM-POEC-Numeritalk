@@ -8,13 +8,13 @@
     </head>
     <body>
         <main class="container">
-            <a href="/">Inscription</a>
+            <a href="/">Accueil</a>
             <h1>M'inscrire</h1>
             {% for error in errors %}
                 <p>{{ error }}</p>
             {% endfor %}
 
-            <form action="" method="post">
+            <form action="" method="POST">
                 <div>
                     <label for="lastname">Nom</label>
                     <input id="lastname" name="lastname" type="text" placeholder="Entrez votre nom">
@@ -41,11 +41,11 @@
                 </div>
                 <div>
                     <label for="password">Mot de passe</label>
-                    <input id="password" name="password" type="text" placeholder="Entrez un mot de passe">
+                    <input id="password" name="password" type="password" placeholder="Entrez un mot de passe">
                 </div>
                 <div>
                     <label for="passwordVerification">Confirmer mot de passe</label>
-                    <input id="passwordVerification" name="passwordVerification" type="text" placeholder="Confirmez votre mot de passe">
+                    <input id="passwordVerification" name="passwordVerification" type="password" placeholder="Confirmez votre mot de passe">
                 </div>
                 <button>Envoyer</button>
             </form>
