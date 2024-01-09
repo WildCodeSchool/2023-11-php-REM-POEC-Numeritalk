@@ -1,22 +1,16 @@
-<!doctype html>
-<html lang="fr">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="/assets/images/favicon.png">
+{% extends 'layout.html.twig' %}
+{% block title %}Profil {{user.uti_name}}{% endblock %}
 
-    <title>Profil {{user.uti_name}}</title>
+{% block stylesheet %}
+{{ parent() }}
+    <link rel="stylesheet" href="/assets/css/profile.css">
+{% endblock %}
 
-</head>
-
-<body>
-    <a href="/">Accueil</a><br>
-    <h1> Bienvenue sur ton profil </h1>
-    {% block content %}{% endblock %}
-    <ul>
-        <ol>Nombre de messsages postés : {{countMessage}} </ol>
-    </ul>
-    
-</body>
-</html>
+{% block content %}
+    <div class="bloc_profil">
+        <h1> Bienvenue sur ton profil</h1>
+        <div>
+            <p>Nombre de messsages postés : {{countMessage}} </p>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,18 @@
+.bloc_lien_discution{
+    background-color: #3CC3FE;
+    padding: 50px;
+    border-radius: 20px;
+}
+
+.bloc_lien_discution a{
+    text-decoration: none;
+    color: white;
+}
+
+.bloc_lien_discution:hover{
+    background-color: #D9D9D9;
+}
+
+.bloc_lien_discution:hover a{
+    color: #282727;
+}

@@ -1,103 +1,42 @@
-<!doctype html>
-<html lang="fr">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="/assets/images/favicon.png">
+{% extends 'layout.html.twig' %}
+{% block title %}Espace catégorie{% endblock %}
 
-    <title>Espace catégorie</title>
+{% block stylesheet %}
+{{ parent() }}
+    <link rel="stylesheet" href="/assets/css/categoryAdmin.css">
+{% endblock %}
 
-    <link rel="stylesheet" href="/assets/css/style.css">
-    {% block stylesheet %}{% endblock %}
-</head>
-
-<body>
-    <h1> Bienvenue dans l'espace catégorie </h1>
-
-<a href="/">Accueil</a><br>
-    <ul>
-        <a href="#" onclick="display('form')">Ajouter une catégorie </a><br>
-        <form action ="category/add" method="POST" id="form">
-            <input type="text" name="nameCategory" id="category"><br>
-            <input type="submit" name="submit" value="ajouter">
-        </form>
-        <a href="#" onclick="displayUpdate('categoryFieldUpdate','updateButton')" id="updateLink">Editer une catégorie </a><br>
-        <a href="#" onclick="display('deleteButton')" id="deleteLink">Supprimer une catégorie </a>
-        <table>
-            <tr>
-                <th>Liste des catégories </th>
-            <tr>    
-            <form action="" method="post" id="formRadio">
+{% block content %}
+    <h1 class="titre_colore"> Bienvenue dans l'espace catégorie </h1>
+    <div class="input_ligne">
+        <div id="selection_categories">
+            <h2>Liste des catégories </h2>
             {% for category in categoryList %}
-            <tr>
-                <td><span>{{category.cat_name}}</span></td>
-                <td><input type="radio" name="categoryId" value={{category.id}}></td>
-                   
-            </tr>
+                <p class="form_selection_categories">
+                    {{category.cat_name}}
+                </p>
             {% endfor %}
-            <button type="submit" id="deleteButton" >Supprimer</button> 
-            <input type="text" name="nameCategory" id="categoryFieldUpdate"><br>
-            <button type="submit" id="updateButton">Modifier</button>
-        </form>
-        </table>            
-    </ul>
-<script>
-    function display(param){
-        let button = document.getElementById(param);
-        button.setAttribute("style", "display : flex ");
-       
-    }
-    function displayUpdate(param,param2){
-        let button = document.getElementById(param2);
-        let field = document.getElementById(param);
-        button.setAttribute("style", "display : flex ");
-        field.setAttribute("style", "display : flex ");
-       
-    }
-
-            {# function to change form's action to put a route into form's action  #}
-            document.addEventListener('DOMContentLoaded', function() {
-                var link = document.getElementById('deleteLink');
-            var form = document.getElementById('formRadio');
-
-            link.addEventListener('click', function(e) {
-                e.preventDefault(); // Empêche le comportement par défaut du lien
-                form.action = 'category/delete'; // Change l'attribut action du formulaire
-            });
-        });
-
-
-    document.addEventListener('DOMContentLoaded', function() {
-                var link = document.getElementById('updateLink');
-            var form = document.getElementById('formRadio');
-
-            link.addEventListener('click', function(e) {
-                e.preventDefault(); // Empêche le comportement par défaut du lien
-                form.action = 'category/edit'; // Change l'attribut action du formulaire
-            });
-        });
-</script>
-    <style>
-        #form{
-            display:none;
-        }
-        #category.id{
-            display:none;
-        }
-        #form2{
-            display:none;
-        }
-        #deleteButton{
-            display:none;
-        }
-        #updateButton{
-            display:none;
-        }
-        #categoryFieldUpdate{
-            display : none;
-        }
-        
-    </style>
-</body>
-</html>
+        </div>
+        <div id="bloc_bouton_categories">
+            <a class="lien_categories" onclick="typeButtonClicked(this)" id="addLink">Ajouter une catégorie</a>
+            <a class="lien_categories" onclick="typeButtonClicked(this)" id="updateLink">Editer une catégorie</a>
+            <a class="lien_categories" onclick="typeButtonClicked(this)" id="deleteLink">Supprimer une catégorie</a>
+        </div>
+        <div id="form_categories">
+            <a class="lien_retour" onclick="typeButtonClicked(this)" id="retourLink">Retour</a>
+            <h2 id="titre_categories"></h2>
+            <form action="" method="post" id="formRadio">
+                <div id="bloc_selection_categories">
+                    {% for category in categoryList %}
+                        <div class="form_selection_categories">
+                            <label>{{category.cat_name}}</label>
+                            <input type="radio" name="categoryId" value={{category.id}}>
+                        </div>
+                    {% endfor %}
+                </div>
+                <input type="text" name="nameCategory" placeholder="Nom" id="name_category">
+                <input type="submit" value="Valider" id="categorie_button"></button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

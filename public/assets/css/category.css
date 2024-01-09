@@ -1,0 +1,24 @@
+.bloc_discussions{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 5px;
+    width: 400px;
+    background-color: #D9D9D9;
+}
+
+.bloc_discussions a{
+    margin: 10px;
+    border-radius: 20px;
+    padding: 5px 20px;
+    width: 300px;
+    background-color: #3CC3FE;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+}
+
+.bloc_discussions a:hover{
+    background-color: #47D5F4;
+    color: #282727;
+}

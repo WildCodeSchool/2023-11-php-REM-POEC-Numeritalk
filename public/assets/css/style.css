@@ -13,20 +13,87 @@
     /* HEADER */
 
         header{
-            background-color: #292929;
-            color: #d0d0d0;
             display: flex;
             flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            height: 9vh;
+            background-color: #3CC3FE;
+            color: white;
+            overflow-y: hidden;
         }
 
-        header a{
-            color: #d0d0d0;
-            padding : 10px;
-            text-decoration: none;
+        #bloc_header_left{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
         }
-        header a:hover{
-            background-color: #38c5ca;
-            color: #292929;
+
+        #bloc_header_left a{
+            text-decoration: none;
+            color: white;
+            padding: 1px 10px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        #bloc_header_left a[href="/"]{
+            padding: 0;
+        }
+
+        #bloc_header_left a[href="/"] p{
+            padding: 0 10px;
+        }
+
+        #bloc_header_left a:hover{
+            background-color: white;
+            color: #3CC3FE;
+        }
+
+        .logo{
+            height: 9vh;
+            width: auto;
+        }
+
+    /* BOUTON THEME */
+
+        #div_group_button_theme{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            width: 80px;
+            height: 40px;
+            margin-right: 10px;
+            border-radius: 50px;
+            background-color: #F4CA25;
+        }
+        
+        #button_theme{
+            background-color: #FBEDB6;
+            width: 30px;
+            height: 30px;
+            border-radius: 50px;
+            margin: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .button_dark_mode{
+            justify-content: flex-end;
+        }
+
+        .icone_button_theme{
+            height: 25px;
+            width: auto;
+        }
+
+        .hide{
+            display: none;
         }
 
     /* MAIN */
@@ -36,219 +103,20 @@
             flex-direction: column;
             align-items: center;
             width: 100%;
+            min-height: 90vh;
         }
 
-        h1 {
-            padding-left: 10px;
-            color: #38c5ca;
-            width: 100%;
-            text-align: left;
+        .titre_colore{
+            color: #3CC3FE;
         }
-
-        .bloc{
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-        }
-
-        .blocMessage{
-            display: flex;
-            flex-direction: column;
-            width: 95vw;
-            background-color: #292929;
-            color: #38c5ca;
-            margin: auto;
-            margin-bottom: 10px;
-            padding: 15px;
-        }
-
-        /* MESSAGE */
-
-            .messages{
-                background-color: #292929;
-                color: #d0d0d0;
-                margin-bottom: 10px;
-                padding: 10px;
-                width: 100%;
-                margin: 30px;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-
-            p{
-                margin: 0;
-                font-size: x-large;
-            }
-
-        /* BOUTONS */
-
-            .blocMessageBouton{
-                display: flex;
-                flex-direction: row;
-                width: fit-content;
-            }
-
-            .blocMessageBouton button{
-                width: 150px;
-                height: 40px;
-                cursor: pointer;
-                display: flex;
-                align-items: center;
-                background: #ffbc36;
-                border: none;
-                border-radius: 5px;
-                box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
-                background: #ffbc36;
-                margin: 10px;
-            }
-
-            .newpost {
-                width: 150px;
-                height: 40px;
-                cursor: pointer;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                background: #38c5ca;
-                border: none;
-                border-radius: 5px;
-                box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
-                background: #38c5ca;
-                margin: 10px;
-                text-decoration: none;
-                color: #eee;
-            }
-
-            .blocMessageBouton a {
-                width: 150px;
-                height: 40px;
-                cursor: pointer;
-                display: flex;
-                align-items: center;
-                background: red;
-                border: none;
-                border-radius: 5px;
-                box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
-                background: #e62222;
-                margin: 10px;
-                text-decoration: none;
-            }
-               
-                .blocMessageBouton button, .blocMessageBouton a, .blocMessageBouton button span, .blocMessageBouton a span, .newpost {
-                    transition: 200ms;
-                }
-               
-                .blocMessageBouton button .text, .blocMessageBouton a .text{
-                    transform: translateX(35px);
-                    color: white;
-                    font-weight: bold;
-                }
-               
-                .blocMessageBouton button .icon {
-                    position: absolute;
-                    border-left: 1px solid #ffbc36;
-                    transform: translateX(110px);
-                    height: 40px;
-                    width: 40px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                }
-               
-                .blocMessageBouton a .icon{
-                    position: absolute;
-                    border-left: 1px solid #c41b1b;
-                    transform: translateX(110px);
-                    height: 40px;
-                    width: 40px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                }
-               
-                .blocMessageBouton button svg, .blocMessageBouton a svg {
-                    width: 15px;
-                    fill: #eee;
-                }
-               
-                .blocMessageBouton button:hover{
-                    background: #ffbc36;
-                }
-               
-                .newpost:hover{
-                    background: #258286;
-                }
-               
-                .blocMessageBouton a:hover{
-                    background: #ff3636;
-                }
-               
-                .blocMessageBouton button:hover .text, .blocMessageBouton a:hover .text {
-                    color: transparent;
-                }
-               
-                .blocMessageBouton button:hover .icon, .blocMessageBouton a:hover .icon {
-                    width: 150px;
-                    border-left: none;
-                    transform: translateX(0);
-                }
-               
-                .blocMessageBouton button:focus, .blocMessageBouton a:focus, .newpost {
-                    outline: none;
-                }
-               
-                .blocMessageBouton button:active .icon svg, .blocMessageBouton a:active .icon svg {
-                    transform: scale(0.8);
-                }
-
-        /* FORM */
-        
-            #form, #editForm {
-                display: none;
-            }
-
-        /* TABLE */
-
-            table {
-                border: 1px solid black;
-            }
-
-            thead, tfoot {
-                background-color: #292929;
-                color: #d0d0d0;
-            }
-
-        /* MODAL */
-
-            .modal {
-                display: none;
-                position: fixed;
-                z-index: 1;
-                left: 0;
-                top: 0;
-                width: 100%;
-                height: 100%;
-                overflow: auto;
-                background-color: #292929;
-            }
-
-            .modal-content {
-                background-color: #d0d0d0;
-                margin: 15% auto;
-                padding: 20px;
-                border: 1px solid #292929;
-                width: 80%;
-            }
 
     /* FOOTER */
 
         footer{
             padding: 10px;
-            background-color: #292929;
-            color: #d0d0d0;
+            background-color: #3CC3FE;
+            color: white;
             display: flex;
             flex-direction: column;
-            align-items: center;
-        }
+            align-items: flex-start;
+        }  
