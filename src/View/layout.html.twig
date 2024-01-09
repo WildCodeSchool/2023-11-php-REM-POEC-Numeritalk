@@ -9,17 +9,51 @@
     <title>{% block title %}{% endblock %}</title>
 
     <link rel="stylesheet" href="/assets/css/style.css">
+    <script src="/assets/js/layout.js"></script>
     {% block stylesheet %}{% endblock %}
 </head>
 
-<body>    
+<body>
     <header>
-        <a href="/">Home</a>
+        <div id="bloc_header_left">
+            <a href="/">
+                <img src="/assets/images/logoNumeritalk.png" alt="logo" class="logo"/>
+                <p>Numeritalk</p>
+            </a>
+            {% if user.uti_name is defined %}
+                <a href="/user/logout">
+                    <p>Se déconnecter</p>
+                </a>
+                <a href="/user/profil">
+                    <p>Profil Utilisateur</p>
+                </a>
+                {% if user.role == 2 %}
+                    <a href="/admin">
+                        <p>Dashboard administrateur</p>
+                    </a>
+                {% endif %}
+            {% else %}
+                <a href="/user/login">
+                    <p>Se connecter</p>
+                </a>
+                <a href="/user/register">
+                    <p>S'inscrire</p>
+                </a>
+            {% endif %}
+        </div>
+        <div id="div_group_button_theme" onclick="theme(this)">
+            <div id="button_theme">
+                <img src="/assets/images/icones/sun.png" alt="soleil" class="icone_button_theme" id="sun"/>
+                <img src="/assets/images/icones/moon.png" alt="lune" class="icone_button_theme hide" id="moon"/>
+            </div>
+        </div>
     </header>
     <main>
         {% block content %}{% endblock %}
     </main>
-    {% include 'Item/_footer.html.twig' %}
+    <footer>
+        <p>Devdojd © 2024</p>
+    </footer>
     {% block javascript %}{% endblock %}
 </body>
 </html>

@@ -1,23 +1,17 @@
-<!doctype html>
-<html lang="fr">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="/assets/images/favicon.png">
+{% extends 'layout.html.twig' %}
 
-    <title>Catégories</title>
+{% block title %} Catégories {% endblock %}
 
-</head>
+{% block stylesheet %}
+{{ parent() }}
+    <link rel="stylesheet" href="/assets/css/category.css">
+{% endblock %}
 
-<body>
-
-<h1> Liste des catégories </h1>
-   <ul >
+{% block content %}
+    <h1 class="titre_colore"> Liste des catégories </h1>
+    <div class="bloc_discussions">
         {% for category in categoryList %}
-        <a href="subjects?id={{category.id}}">{{category.cat_name}}</a><br>
+            <a href="subjects?id={{category.id}}">{{category.cat_name}}</a>
         {% endfor %}
-   </ul>
-    
-</body>
-</html>
+    </div>
+{% endblock %}
