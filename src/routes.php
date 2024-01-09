@@ -20,12 +20,6 @@ return [
     'admin/category/delete' => ['CategoryController', 'deleteCategory',],
     'admin/category/edit' => ['CategoryController', 'updateCategory',],
 
-    'items' => ['ItemController', 'index',],
-    'items/edit' => ['ItemController', 'edit', ['id']],
-    'items/show' => ['ItemController', 'show', ['id']],
-    'items/add' => ['ItemController', 'add',],
-    'items/delete' => ['ItemController', 'delete',],
-
     // Path Subject
     'subjects' => ['SubjectController', 'index', ['id']],
     'subjects/add' => ['SubjectController', 'addSubjectAndMessage',['categoryId']],

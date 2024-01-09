@@ -1,25 +1,26 @@
-<!doctype html>
-<html lang="fr">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="/assets/images/favicon.png">
+{% extends 'layout.html.twig' %}
 
-    <title>Authentification</title>
+{% block title %}
+    Authentification
+{% endblock %}
 
-</head>
+{% block stylesheet %}
+{{ parent() }}
+    <link rel="stylesheet" href="/assets/css/login.css">
+{% endblock %}
 
-<body>
+{% block content %}
 
-    <a href="/">Accueil</a><br>
-        <form method="POST">
-            <label for="username">identifiant : </label>
-            <input type="text" name="username"><br>
-            <label for="password">password : </label>
-            <input type="password" name="password">
-            <input type="submit" value="connecter" name="submit">
-        </form>
-    
-</body>
-</html>
+
+        <div class="bloc_authentification">
+            <h1 class="titre_authentification">Authentification</h1>
+            <form method="POST" class="form_authentification">
+                <input type="text" name="username" placeholder="identifiant :" class="champ_form">
+                <input type="password" name="password" placeholder="Mot de passe :" class="champ_form">
+                <input type="submit" value="se connecter" name="submit" class="button_form">
+            </form>
+            <a href="/" class="lien_oubli">Oubli de mot de passe ?</a>
+        </div>
+
+{% endblock %}
+

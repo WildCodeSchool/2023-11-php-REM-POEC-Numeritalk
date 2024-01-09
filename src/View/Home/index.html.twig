@@ -1,27 +1,23 @@
 {% extends 'layout.html.twig' %}
 
-{# {% block stylesheet %}
-{{parent()}}
-<link rel="stylesheet" href="/assets/css/style.css">
-{% endblock %} #}
+{% block title %}
+    Accueil
+{% endblock %}
+
+{% block stylesheet %}
+{{ parent() }}
+    <link rel="stylesheet" href="/assets/css/home.css">
+{% endblock %}
 
 {% block content %}
     {% if user.uti_name is defined %}
-
-    <h1>Hello {{user.uti_name}}</h1>
-    <a href="user/logout">Se déconnecter</a><br>
-
-    <a href="user/profil"> Profil Utilisateur</a><br>
-        {% if user.role == 2 %}
-            <a href="admin">Dashboard administrateur </a><br>
-        {% endif %}
+        <h1 class="titre_colore">Hello {{user.uti_name}}</h1>
     {% else %}
-        <h1>Hello Wilder </h1>
-        <a href="user/login">Se connecter </a><br>
-        <a href="user/register">S'inscrire </a><br>
+        <h1 class="titre_colore">Hello Wilder </h1>
     {% endif %}
 
-    <a href="category">Discussion </a>
-    
+    <div class="bloc_lien_discution">
+        <a href="category">Discussion</a>
+    </div>
     
 {% endblock %}

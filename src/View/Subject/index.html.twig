@@ -1,39 +1,45 @@
 {% extends 'layout.html.twig' %}
 
+{% block stylesheet %}
+{{ parent() }}
+    <link rel="stylesheet" href="/assets/css/subject.css">
+    <link rel="stylesheet" href="/assets/css/categoryAdmin.css">
+{% endblock %}
+
 {% block content %}
-<h1>Sujets</h1>
-        {% if user.uti_name is defined %}
-         <a onclick="display('form4')" class="newpost"> Créer un sujet</a>
-            <form action="subjects/add?categoryId={{subjectList[0].categorie}}" method="POST" id="form4">
-                <label for="subjectName">nom du sujet :</label>
-                <input type="text" id="subjectName" name="subjectName" required><br>
-                <label for="messageContent">Message :</label>
-                <textarea id="messageContent" name="messageContent" required></textarea><br><br>
-                <input type="submit" value="Valider" name="submit">                
-            </form>
-        {% else %}
+    <a href="/category" class="lien_retour" id="retourLink">Retour aux catégories</a>
+    <h1 class="titre_colore">Sujets</h1>
+    {% if user.uti_name is defined %}
+        <a class="bloc_liste_sujet" onclick="display('sujet_form')" id="add_sujet">Créer un sujet</a>
+        <form action="subjects/add?categoryId={{subjectList[0].categorie}}" method="POST" id="sujet_form">
+            <label for="subjectName">nom du sujet :</label>
+            <input type="text" id="subjectName" name="subjectName" required>
+            <label for="messageContent">Message :</label>
+            <textarea id="messageContent" name="messageContent" required></textarea>
+            <input type="submit" value="Valider" name="submit">                
+        </form>
+    {% else %}
         <p> vous devez vous connecter pour créer un sujet </p>
-        {% endif %}
-        <ul>
+    {% endif %}
+    <table id="table_sujets">
+        <thead>
+            <tr>
+                <td>Sujets</td>
+                <td>Auteurs</td>
+            </tr>
+        </thead>
+        <tbody>
             {% for subject in subjectList %}
-            <li><a href="messages?subjectId={{ subject.id }}">{{ subject.suj_name }}</a>
-            auteur sujet : {{subject.uti_name}}</li>
+                <tr>
+                    <td class="td_sujet"><a href="messages?subjectId={{ subject.id }}">{{ subject.suj_name }}</a></td>
+                    <td>{{subject.uti_name}}</td>
+                </tr>
             {% else %}
-            <li>Il n'y a pas encore de sujet dans cette catégorie. Voulez-vous en ajouter un ?</li>
+                <tr>
+                    <td colspan="2">Il n'y a pas encore de sujet dans cette catégorie. Voulez-vous en <a onclick="display('sujet_form')">ajouter un ?</a></td>
+                </tr>
             {% endfor %}
-        </ul>
-
-<script>
-        function display(param) {
-            var element = document.getElementById(param);
-            element.style.display = (element.style.display === "none") ? "block" : "none";
-        }
-</script>
-
-<style>
-    #form4{
-        display : none;
-    }
-</style>
-    {% endblock %}
+        </tbody>
+    </table>
+{% endblock %}
 

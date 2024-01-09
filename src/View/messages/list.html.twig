@@ -1,81 +1,61 @@
 {% extends 'layout.html.twig' %}
 
+{% block stylesheet %}
+{{ parent() }}
+    <link rel="stylesheet" href="/assets/css/message.css">
+    <link rel="stylesheet" href="/assets/css/categoryAdmin.css">
+{% endblock %}
+
 {% block content %}
-    <h1>Sujet : {{ messages[0].sujet}}<br></h1><br>
+    <a href="/category" class="lien_retour" id="retourLink">Retour aux catégories</a>
+    <h1 class="titre_colore">Sujet : {{ messages[0].sujet}}</h1>
+    <div id="bloc_messages">
         {% if messages is not empty %}
-            <div class="bloc">
-                {% for message in messages %}
-                    <div class="blocMessage">
-                        <p>
-                            Utilisateur: {{ message.uti_name }}
-                        </p>
-                        <p>
-                           {{ message.mes_contenu }}
-                        </p>
-                        {% if user.uti_name is defined and user.uti_name == message.uti_name %}
-                        <div class="blocMessageBouton">
-                            <button class="noselect" onclick="openEditForm('{{ message.id }}', '{{ message.mes_contenu | escape('js') }}')">
+            {% for message in messages %}
+                <div class="messages">
+                    <p class="title_messages">
+                        Utilisateur: {{ message.uti_name }}
+                    </p>
+                    <hr>
+                    <p class="content_messages">
+                        {{ message.mes_contenu }}
+                    </p>
+                    {% if user.uti_name is defined and user.uti_name == message.uti_name %}
+                        <div class="bloc_bouton_message">
+                            <a class="button_messages" onclick="openEditForm('{{ message.id }}', '{{ message.mes_contenu | escape('js') }}')">
                                 <span class="text">Modifier</span>
-                                <span class="icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                        <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z">
-                                        </path>
-                                    </svg>
-                                </span>
-                            </button>
-                            <a class="noselect" href="/messages/delete?messageId={{message.id}}">
+                            </a>
+                            <a class="button_messages" href="/messages/delete?messageId={{message.id}}">
                                 <span class="text">Supprimer</span>
-                                <span class="icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                        <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z">
-                                        </path>
-                                    </svg>
-                                </span>
                             </a>
                         </div>
-                        {% endif %}
-                    </div>
-                {% endfor %}
-            </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
         {% else %}
             <p>Aucun message à afficher.</p>
         {% endif %}
-        {% if user.uti_name is defined %}
-            <a onclick="display('form')" class="newpost"> Poster un message</a>
-            <form action="messages/post?subjectId={{messages[0].id_sujet}}" method="POST" id="form">
-                <label for="messageContent">Message :</label>
-                <textarea id="messageContent" name="messageContent" required></textarea><br><br>
-                <input type="submit" value="Poster Message" name="submit">
-            </form>
+    </div>
+    {% if user.uti_name is defined %}
+        <a onclick="displayForm()" class="button_messages" id="add_message">Poster un message</a>
+        <form action="messages/post?subjectId={{messages[0].id_sujet}}" method="POST" id="form_message">
+            <label for="messageContent">Message :</label>
+            <textarea id="messageContent" name="messageContent" required></textarea>
+            <input type="submit" value="Poster Message" name="submit" class="button_messages">
+        </form>
         <div id="editForm" class="modal">
             <div class="modal-content">
                 <span onclick="closeEditForm()">&times;</span>
-                <form action="/messages/update" method="POST">
+                <form action="/messages/update" method="POST" class="form_edit_message">
                     <input type="hidden" id="editMessageId" name="messageId">
-                    <input type="hidden" id="editSubjectId" name=""
+                    <input type="hidden" id="editSubjectId" name="">
                     <label for="editMessageContent">Nouveau message :</label>
-                    <textarea id="editMessageContent" name="newContent" ></textarea><br><br>
-                    <input type="submit" value="Editer Message">
+                    <textarea id="editMessageContent" name="newContent" ></textarea>
+                    <input type="submit" value="Editer Message" class="button_messages">
                 </form>
             </div>
-         </div>
-         {% else %}
-         vous devez vous connecter pour poster un message
-         {% endif %}
-    <script>
-        function display(param) {
-            var element = document.getElementById(param);
-            element.style.display = (element.style.display === "none") ? "block" : "none";
-        }
-
-        function openEditForm(messageId, messageContent) {
-            document.getElementById('editMessageId').value = messageId;
-            document.getElementById('editMessageContent').value = messageContent;
-            document.getElementById('editForm').style.display = 'block';
-        }
-
-        function closeEditForm() {
-            document.getElementById('editForm').style.display = 'none';
-        }
-    </script>
+        </div>
+    {% else %}
+        <p>vous devez vous connecter pour poster un message</p>
+    {% endif %}
 {% endblock %}
