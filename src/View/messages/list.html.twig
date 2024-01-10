@@ -14,7 +14,7 @@
             {% for message in messages %}
                 <div class="messages">
                     <p class="title_messages">
-                        Utilisateur: {{ message.uti_name }}
+                        Utilisateur: {{ message.uti_name }} {{message.date_formatee}}
                     </p>
                     <hr>
                     <p class="content_messages">
