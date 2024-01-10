@@ -53,9 +53,9 @@ class MessageManager implements IMessageManager
      */
     public function postMessage($subjectId, $messageContent, $userId)
     {
-        $dateTimeZone=new DateTimeZone("Europe/Paris");
-        $today=new DateTime('now',$dateTimeZone);
-        $todayString=$today->format('Y-m-d H:i:s') ;
+        $dateTimeZone = new DateTimeZone("Europe/Paris");
+        $today = new DateTime('now', $dateTimeZone);
+        $todayString = $today->format('Y-m-d H:i:s');
         $sql = "INSERT INTO message (mes_contenu, utilisateur, sujet,date_publication) VALUES (?, ?, ?, ?)";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$messageContent, $userId, $subjectId,$todayString]);
