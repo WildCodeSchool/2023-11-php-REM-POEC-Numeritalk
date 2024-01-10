@@ -3,6 +3,8 @@
 namespace App\Model;
 
 use PDO;
+use DateTimeZone;
+use DateTime;
 
 class MessageManager implements IMessageManager
 {
@@ -19,11 +21,13 @@ class MessageManager implements IMessageManager
     public function getListMessage($subjectId)
     {
         $sql = "SELECT message.id, message.mes_contenu, sujet.suj_name as sujet, 
-        utilisateur.uti_name,sujet.id as id_sujet
+        utilisateur.uti_name,sujet.id as id_sujet, DATE_FORMAT(date_publication,'%d/%m/%Y %H:%i:%s')
+        AS date_formatee
          FROM message 
          INNER JOIN sujet ON message.sujet = sujet.id 
          INNER JOIN utilisateur ON message.utilisateur = utilisateur.id 
-         WHERE message.sujet = :subjectId";
+         WHERE message.sujet = :subjectId
+         ORDER BY date_publication";
         $stmt = $this->pdo->prepare($sql);
         // execute request and check error
         if (!$stmt->execute(['subjectId' => $subjectId])) {
@@ -49,9 +53,12 @@ class MessageManager implements IMessageManager
      */
     public function postMessage($subjectId, $messageContent, $userId)
     {
-        $sql = "INSERT INTO message (mes_contenu, utilisateur, sujet) VALUES (?, ?, ?)";
+        $dateTimeZone=new DateTimeZone("Europe/Paris");
+        $today=new DateTime('now',$dateTimeZone);
+        $todayString=$today->format('Y-m-d H:i:s') ;
+        $sql = "INSERT INTO message (mes_contenu, utilisateur, sujet,date_publication) VALUES (?, ?, ?, ?)";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([$messageContent, $userId, $subjectId]);
+        $stmt->execute([$messageContent, $userId, $subjectId,$todayString]);
     }
 
     /**

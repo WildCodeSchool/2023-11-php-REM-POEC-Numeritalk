@@ -4,6 +4,5 @@
 *.cache
 db.php.dist
 db.php
-database.sql
 .idea
 .vscode
