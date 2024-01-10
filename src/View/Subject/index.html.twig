@@ -26,6 +26,7 @@
             <tr>
                 <td>Sujets</td>
                 <td>Auteurs</td>
+                <td>Date publication</td>
             </tr>
         </thead>
         <tbody>
@@ -33,6 +34,7 @@
                 <tr>
                     <td class="td_sujet"><a href="messages?subjectId={{ subject.id }}">{{ subject.suj_name }}</a></td>
                     <td>{{subject.uti_name}}</td>
+                    <td>{{subject.date_formatee}}</td>
                 </tr>
             {% else %}
                 <tr>

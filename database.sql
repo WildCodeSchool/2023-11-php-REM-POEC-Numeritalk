@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : ven. 05 jan. 2024 à 10:57
+-- Généré le : mer. 10 jan. 2024 à 16:31
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -49,41 +49,24 @@ INSERT INTO `categorie` (`id`, `cat_name`) VALUES
 
 CREATE TABLE `message` (
   `id` int(11) NOT NULL,
-  `mes_contenu` varchar(70) NOT NULL,
+  `mes_contenu` varchar(2000) NOT NULL,
   `sujet` int(11) NOT NULL,
-  `utilisateur` int(11) NOT NULL
+  `utilisateur` int(11) NOT NULL,
+  `date_publication` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `message`
 --
 
-INSERT INTO `message` (`id`, `mes_contenu`, `sujet`, `utilisateur`) VALUES
-(3, 'je suis quantin', 1, 33),
-(6, 'bonjour', 2, 33),
-(7, 'test', 2, 33),
-(8, 'oui php est bien', 2, 33),
-(9, 'test', 2, 33),
-(10, 'autre test', 1, 33),
-(11, 'c\'est bien php oui', 2, 33),
-(12, 'j\'aime php', 2, 33),
-(13, 'j\'aime beaucoup php', 2, 33),
-(18, 'test', 19, 35),
-(22, 'coucou', 19, 35),
-(23, 'testons', 20, 35),
-(24, 'yo', 20, 35),
-(25, 'j\'ai déjà fait du php', 20, 35),
-(26, 'bonjour j\'aimerais biens tester les 2 ensembles', 21, 35),
-(28, 'Bonjour je suis disponible pour aider des personnes', 22, 34),
-(29, 'Bonjour je voudrais savoir pourquoi faire du java ?', 23, 34),
-(30, 'ah c\'est bon plus besoin de réponse', 23, 34),
-(31, 'Bonne question', 23, 33),
-(32, 'ouais c\'est pas mal', 21, 34),
-(33, 'arrete de te parler tout seul', 20, 34),
-(34, 'Bonjour tout est dans le titre', 24, 34),
-(35, 'Bonjour je voudrais savoir c\'est quoi J2EE ?', 25, 34),
-(36, 'Encore un autre message sur java', 26, 34),
-(37, 'Encore un autre message sur php', 27, 34);
+INSERT INTO `message` (`id`, `mes_contenu`, `sujet`, `utilisateur`, `date_publication`) VALUES
+(3, 'je suis quantin', 1, 33, '2024-01-10 16:21:46'),
+(6, 'bonjour', 2, 33, '2024-01-10 16:21:57'),
+(23, 'testons', 20, 35, '2024-01-10 16:22:06'),
+(28, 'Bonjour je suis disponible pour aider des personnes', 22, 34, '2024-01-10 16:22:13'),
+(31, 'Bonne question', 23, 33, '2024-01-10 16:22:19'),
+(32, 'ouais c\'est pas mal', 21, 34, '2024-01-10 16:22:26'),
+(40, 'bonjour, quel est ta question ?', 2, 35, '2024-01-10 16:27:06');
 
 -- --------------------------------------------------------
 
@@ -113,7 +96,7 @@ INSERT INTO `role` (`id`, `rol_name`) VALUES
 
 CREATE TABLE `sujet` (
   `id` int(11) NOT NULL,
-  `suj_name` varchar(40) NOT NULL,
+  `suj_name` varchar(80) NOT NULL,
   `categorie` int(11) NOT NULL,
   `utilisateur` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -125,15 +108,10 @@ CREATE TABLE `sujet` (
 INSERT INTO `sujet` (`id`, `suj_name`, `categorie`, `utilisateur`) VALUES
 (1, 'comment creer une appli java', 2, 35),
 (2, 'php est tres bien', 1, 34),
-(19, 'j\'aimerais java', 2, 35),
 (20, 'j\'aimais php', 1, 35),
 (21, 'php avec symfony c\'est bien ?', 1, 35),
 (22, 'qui a besoin d\'aide pour java ?', 2, 34),
-(23, 'pourquoi faire du java ?', 2, 34),
-(24, 'pourquoi faire du symfony ?', 1, 34),
-(25, 'C\'est quoi J2EE ?', 2, 34),
-(26, 'Encore un autre sujet sur java', 2, 34),
-(27, 'Encore un autre sujet sur php', 1, 34);
+(23, 'pourquoi faire du java ?', 2, 34);
 
 -- --------------------------------------------------------
 
@@ -215,7 +193,7 @@ ALTER TABLE `categorie`
 -- AUTO_INCREMENT pour la table `message`
 --
 ALTER TABLE `message`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT pour la table `role`
@@ -227,7 +205,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT pour la table `sujet`
 --
 ALTER TABLE `sujet`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT pour la table `utilisateur`
