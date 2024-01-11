@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Post a Message</title>
+    <title>Poster un message</title>
 </head>
 <body>
-    <h1>Post a New Message</h1>
+    <h1>Poster un nouveau message</h1>
     {# <form method="post" action="/messages/post"> #}
     <form method="post" action="#">
-        <label for="subjectId">Subject ID:</label>
+        <label for="subjectId">Sujet :</label>
         <input type="number" id="subjectId" name="subjectId" required><br><br>
 
-        <label for="messageContent">Message Content:</label>
+        <label for="messageContent">Message :</label>
         <textarea id="messageContent" name="messageContent" required></textarea><br><br>
 
-        <label for="userId">User ID:</label>
+        <label for="userId">Identifiant :</label>
         <input type="number" id="userId" name="userId" required><br><br>
 
         <input type="submit" value="Post Message">

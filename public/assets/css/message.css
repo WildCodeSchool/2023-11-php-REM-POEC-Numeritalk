@@ -41,14 +41,14 @@
     border-radius: 20px;
     padding: 5px 20px;
     width: fit-content;
-    background-color: #3CC3FE;
+    background-color: #54c5cb;
     color: white;
     text-align: center;
     text-decoration: none;
 }
 
 .button_messages:hover{
-    background-color: #47D5F4;
+    background-color: #54c5cb;
     color: #282727;
 }
 
@@ -79,14 +79,14 @@
     border-radius: 20px;
     padding: 5px 20px;
     width: fit-content;
-    background-color: #3CC3FE;
+    background-color: #54c5cb;
     color: white;
     text-align: center;
     text-decoration: none;
 }
 
 #form_message .button_messages:hover, .form_edit_message .button_messages:hover{
-    background-color: #47D5F4;
+    background-color: #54c5cb;
     color: #282727;
 }
 

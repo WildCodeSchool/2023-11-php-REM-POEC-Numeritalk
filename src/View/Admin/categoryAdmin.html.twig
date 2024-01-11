@@ -1,5 +1,5 @@
 {% extends 'layout.html.twig' %}
-{% block title %}Espace catégorie{% endblock %}
+{% block title %}Espace catégories{% endblock %}
 
 {% block stylesheet %}
 {{ parent() }}
@@ -7,10 +7,10 @@
 {% endblock %}
 
 {% block content %}
-    <h1 class="titre_colore"> Bienvenue dans l'espace catégorie </h1>
+    <h1 class="titre_colore"> Bienvenue dans l'espace des catégories </h1>
     <div class="input_ligne">
         <div id="selection_categories">
-            <h2>Liste des catégories </h2>
+            <h2>Liste des catégories</h2>
             {% for category in categoryList %}
                 <p class="form_selection_categories">
                     {{category.cat_name}}
