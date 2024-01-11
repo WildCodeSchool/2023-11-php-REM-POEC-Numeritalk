@@ -12,14 +12,15 @@ class SubjectManager extends AbstractManager implements ISubjectManager
      */
     public function getListSubject($categoryId)
     {
-        $sql = "SELECT DISTINCT sujet.suj_name,sujet.categorie,utilisateur.uti_name,sujet.id, 
-        DATE_FORMAT(date_publication,'%d/%m/%Y %H:%i')
+        $sql = "SELECT sujet.suj_name,sujet.categorie,utilisateur.uti_name,sujet.id, 
+        DATE_FORMAT(MAX(date_publication),'%d/%m/%Y %H:%i')
         AS date_formatee
          FROM " . self::TABLE . " 
          INNER JOIN utilisateur ON sujet.utilisateur = utilisateur.id
          INNER JOIN message ON sujet.id = message.sujet  
-         WHERE sujet.categorie = :categoryId 
-         ORDER BY date_publication DESC";
+         WHERE sujet.categorie = :categoryId
+         GROUP BY sujet.suj_name, sujet.categorie, utilisateur.uti_name, sujet.id 
+         ORDER BY MAX(date_publication) DESC";
         $stmt = $this->pdo->prepare($sql);
         // execute request and check error
         if (!$stmt->execute(['categoryId' => $categoryId])) {

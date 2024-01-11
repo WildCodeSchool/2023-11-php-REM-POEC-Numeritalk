@@ -43,7 +43,7 @@
                 border-radius: 20px;
                 padding: 10px 40px;
                 width: 160px;
-                background-color: #3CC3FE;
+                background-color: #54c5cb;
                 color: white;
                 text-align: center;
                 text-decoration: none;
@@ -75,7 +75,7 @@
                 margin: 10px 0 5px 0;
                 border-radius: 20px;
                 padding: 5px 20px;
-                background-color: #3CC3FE;
+                background-color: #54c5cb;
                 color: white;
                 align-self: flex-start;
                 text-align: center;
@@ -83,7 +83,7 @@
             }
 
             .lien_retour:hover{
-                background-color: #47D5F4;
+                background-color: #54c5cb;
                 color: #282727;
             }
 
@@ -101,13 +101,13 @@
                 margin: 0 0 5px 0;
                 border-radius: 20px;
                 padding: 5px 20px;
-                background-color: #3CC3FE;
+                background-color: #54c5cb;
                 color: white;
                 text-align: center;
                 text-decoration: none;
             }
 
             #categorie_button:hover{
-                background-color: #47D5F4;
+                background-color: #54c5cb;
                 color: #282727;
             }

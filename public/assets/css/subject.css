@@ -2,14 +2,14 @@
     border-radius: 20px;
     padding: 5px 20px;
     width: 300px;
-    background-color: #3CC3FE;
+    background-color: #54c5cb;
     color: white;
     text-align: center;
     text-decoration: none;
 }
 
 .bloc_liste_sujet:hover{
-    background-color: #47D5F4;
+    background-color: #54c5cb;
     color: #282727;
 }
 
@@ -36,12 +36,12 @@
     border-radius: 20px;
     padding: 5px 20px;
     width: fit-content;
-    background-color: #3CC3FE;
+    background-color: #54c5cb;
     color: white;
 }
 
 #sujet_form input[type = "submit"]:hover{
-    background-color: #47D5F4;
+    background-color: #54c5cb;
     color: #282727;
 }
 
@@ -93,7 +93,7 @@
             }
 
             .td_sujet:hover{
-                background-color: #3CC3FE;
+                background-color: #54c5cb;
             }
 
             .td_sujet a{

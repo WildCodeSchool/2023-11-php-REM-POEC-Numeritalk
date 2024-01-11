@@ -20,7 +20,7 @@
             position: sticky;
             top: 0;
             height: 9vh;
-            background-color: #3CC3FE;
+            background-color: #54c5cb;
             color: white;
             overflow-y: hidden;
         }
@@ -50,12 +50,15 @@
 
         #bloc_header_left a:hover{
             background-color: white;
-            color: #3CC3FE;
+            color: #54c5cb;
         }
 
         .logo{
-            height: 9vh;
+            height: 12vh;
             width: auto;
+            /* margin: 10px;
+            border: 10px;
+            padding: 10px; */
         }
 
     /* BOUTON THEME */
@@ -107,14 +110,14 @@
         }
 
         .titre_colore{
-            color: #3CC3FE;
+            color: #54c5cb;
         }
 
     /* FOOTER */
 
         footer{
             padding: 10px;
-            background-color: #3CC3FE;
+            background-color: #54c5cb;
             color: white;
             display: flex;
             flex-direction: column;

@@ -11,13 +11,13 @@
 
 {% block content %}
     {% if user.uti_name is defined %}
-        <h1 class="titre_colore">Hello {{user.uti_name}}</h1>
+        <h1 class="titre_colore">Hello {{user.uti_name}} !</h1>
     {% else %}
-        <h1 class="titre_colore">Hello Wilder </h1>
+        <h1 class="titre_colore">Hello Wilder !</h1>
     {% endif %}
 
-    <div class="bloc_lien_discution">
-        <a href="category">Discussion</a>
+    <div class="bloc_lien_discussion">
+        <a href="category">Discussions</a>
     </div>
     
 {% endblock %}

@@ -1,18 +1,25 @@
-.bloc_lien_discution{
-    background-color: #3CC3FE;
+@import url('https://fonts.googleapis.com/css2?family=Belleza&family=Forum&family=Hind+Siliguri:wght@300;600&family=Titillium+Web:wght@300&display=swap');
+
+body {
+    font-family: 'Belleza', sans-serif;
+    font-size: larger;
+}
+
+.bloc_lien_discussion{
+    background-color: #54c5cb;
     padding: 50px;
     border-radius: 20px;
 }
 
-.bloc_lien_discution a{
+.bloc_lien_discussion a{
     text-decoration: none;
-    color: white;
+    color: rgba(255,255,255,255);
 }
 
-.bloc_lien_discution:hover{
+.bloc_lien_discussion:hover{
     background-color: #D9D9D9;
 }
 
-.bloc_lien_discution:hover a{
+.bloc_lien_discussion:hover a{
     color: #282727;
 }
