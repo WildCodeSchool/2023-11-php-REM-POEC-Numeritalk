@@ -18,37 +18,38 @@
             <form action="" method="POST" class="form_inscription">
                 <div class="input_ligne">
                     <label for="lastname">Nom</label>
-                    <input id="lastname" name="lastname" type="text" placeholder="Entrez votre nom">
+                    <input id="lastname" name="lastname" type="text" placeholder="Entrez votre nom" required>
                 </div>
                 <div class="input_ligne">
                     <label for="firstname">Prénom</label>
-                    <input id="firstname" name="firstname" type="text" placeholder="Entrez votre prénom">
+                    <input id="firstname" name="firstname" type="text" placeholder="Entrez votre prénom" required>
                 </div>
                 <div class="input_ligne">
                     <label for="dateOfBirth">Date de naissance</label>
-                    <input id="dateOfBirth" name="dateOfBirth" type="date" placeholder="Ajoutez votre date de naissance">
+                    <input id="dateOfBirth" name="dateOfBirth" type="date" placeholder="Ajoutez votre date de naissance" required>
                 </div>
                 <div class="input_ligne">
                     <label for="emailAddress">Adresse mail</label>
-                    <input id="email" name="email" type="email" placeholder="Entrez votre adresse mail">
+                    <input id="email" name="email" type="email" placeholder="Entrez votre adresse mail" required>
                 </div>
                 <div class="input_ligne">
                     <label for="Country">Pays de résidence</label>
-                    <input id="country" name="country" type="country" placeholder="Entrez le nom du pays où vous résidez">
+                    <input id="country" name="country" type="country" placeholder="Entrez le nom du pays où vous résidez" required>
                 </div>
                 <div class="input_ligne">
                     <label for="username">Identifiant</label>
-                    <input id="username" name="username" type="text" placeholder="Entrez un identifiant">
+                    <input id="username" name="username" type="text" placeholder="Entrez un identifiant" required>
                 </div>
                 <div class="input_ligne">
                     <label for="password">Mot de passe</label>
-                    <input id="password" name="password" type="password" placeholder="Entrez un mot de passe">
+                    <input id="password" name="password" type="password" placeholder="Entrez un mot de passe" required>
                 </div>
                 <div class="input_ligne">
                     <label for="passwordVerification">Confirmer mot de passe</label>
-                    <input id="passwordVerification" name="passwordVerification" type="password" placeholder="Confirmez votre mot de passe">
+                    <input id="passwordVerification" onKeyUp="checkPassword()" name="passwordVerification" type="password" placeholder="Confirmez votre mot de passe" required>
                 </div>
-                <button class="button_form">Envoyer</button>
+                <span id="message"></span>
+                <button class="button_form" id="buttonFormRegister">Envoyer</button>
             </form>
         </div>
 {% endblock %}
