@@ -1,19 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Belleza&family=Forum&family=Hind+Siliguri:wght@300;600&family=Titillium+Web:wght@300&display=swap');
-
-body {
-    font-family: 'Belleza', sans-serif;
-    font-size: larger;
-}
-
 .bloc_lien_discussion{
     background-color: #54c5cb;
     padding: 50px;
+    border: 100px;
     border-radius: 20px;
 }
 
 .bloc_lien_discussion a{
     text-decoration: none;
     color: rgba(255,255,255,255);
+    font-size: 30px;
 }
 
 .bloc_lien_discussion:hover{

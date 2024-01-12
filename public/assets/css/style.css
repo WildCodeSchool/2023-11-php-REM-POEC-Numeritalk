@@ -8,6 +8,8 @@
         margin: 0;
         border: 0;
         padding: 0;
+        font-family: 'Belleza', sans-serif;
+        font-size: large;
     }
 
     /* HEADER */
@@ -19,7 +21,7 @@
             justify-content: space-between;
             position: sticky;
             top: 0;
-            height: 9vh;
+            height: 11vh;
             background-color: #54c5cb;
             color: white;
             overflow-y: hidden;
@@ -38,27 +40,33 @@
             display: flex;
             flex-direction: row;
             align-items: center;
+            font-size: larger;
+            font-size:20px;
         }
 
         #bloc_header_left a[href="/"]{
-            padding: 0;
+            padding: 10;
         }
 
         #bloc_header_left a[href="/"] p{
-            padding: 0 10px;
+            padding: 10;
+            font-size: 45px;
         }
 
         #bloc_header_left a:hover{
             background-color: white;
             color: #54c5cb;
+            border-radius: 10px;
         }
 
         .logo{
-            height: 12vh;
+            height: 11vh;
             width: auto;
-            /* margin: 10px;
+            margin-top: 30px !important;
+            margin: 10px;
             border: 10px;
-            padding: 10px; */
+            padding: 10px;
+            position: center;
         }
 
     /* BOUTON THEME */
@@ -71,7 +79,7 @@
             height: 40px;
             margin-right: 10px;
             border-radius: 50px;
-            background-color: #F4CA25;
+            background-color: rgb(244, 202, 37);
         }
         
         #button_theme{
