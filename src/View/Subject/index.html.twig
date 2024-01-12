@@ -11,7 +11,7 @@
     <h1 class="titre_colore">Sujets</h1>
     {% if user.uti_name is defined %}
         <a class="bloc_liste_sujet" onclick="display('sujet_form')" id="add_sujet">Créer un sujet</a>
-        <form action="subjects/add?categoryId={{subjectList[0].categorie}}" method="POST" id="sujet_form">
+        <form action="subjects/add?categoryId={{subjectList[0].idCategorie}}" method="POST" id="sujet_form">
             <label for="subjectName">Nom du sujet :</label>
             <input type="text" id="subjectName" name="subjectName" required>
             <label for="messageContent">Message :</label>
