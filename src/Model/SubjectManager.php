@@ -14,12 +14,13 @@ class SubjectManager extends AbstractManager implements ISubjectManager
     {
         $sql = "SELECT sujet.suj_name,sujet.categorie,utilisateur.uti_name,sujet.id, 
         DATE_FORMAT(MAX(date_publication),'%d/%m/%Y %H:%i')
-        AS date_formatee
+        AS date_formatee, categorie.id as idCategorie
          FROM " . self::TABLE . " 
          INNER JOIN utilisateur ON sujet.utilisateur = utilisateur.id
          INNER JOIN message ON sujet.id = message.sujet  
-         WHERE sujet.categorie = :categoryId
-         GROUP BY sujet.suj_name, sujet.categorie, utilisateur.uti_name, sujet.id 
+         RIGHT JOIN categorie ON sujet.categorie = categorie.id
+         WHERE categorie.id = :categoryId 
+         GROUP BY sujet.suj_name, sujet.categorie, utilisateur.uti_name, sujet.id
          ORDER BY MAX(date_publication) DESC";
         $stmt = $this->pdo->prepare($sql);
         // execute request and check error
