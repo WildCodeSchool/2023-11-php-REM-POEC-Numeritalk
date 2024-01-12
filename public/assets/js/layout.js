@@ -108,3 +108,24 @@ function openEditForm(messageId, messageContent) {
 function closeEditForm() {
     document.getElementById('editForm').style.display = 'none';
 }
+
+
+
+function checkPassword(){
+    var password=document.getElementById("password").value;
+      var message=document.getElementById("message");
+    var passwordConfirm=document.getElementById("passwordVerification").value;
+      var submit=document.getElementById("buttonFormRegister");
+       if(password === passwordConfirm){
+        message.textContent="les mots de passe correspondent";
+         message.setAttribute("style","color : green");
+         submit.setAttribute("style","display : flex");
+         
+       }
+      else{
+        message.textContent="les mots de passe ne correspondent pas";
+        message.setAttribute("style","color : red");
+        submit.setAttribute("style","display : none");
+        
+      }
+    };

@@ -55,10 +55,14 @@ class UserController extends AbstractController
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $credentials = $_POST;
-            $userManager = new UserManager();
-            if ($userManager->insertUser($credentials)) {
-                header('Location: /user/login');
-                exit();
+            if ($credentials["password"] === $credentials["passwordVerification"]) {
+                $userManager = new UserManager();
+                if ($userManager->insertUser($credentials)) {
+                    header('Location: /user/login');
+                    exit();
+                }
+            } else {
+                return $this->twig->render('User/user_form.html.twig');
             }
         }
         return $this->twig->render('User/user_form.html.twig');
