@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Editer message</title>
+</head>
+<body>
+    <h1>Editer message</h1>
+    <form method="post" action="/messages/edit">
+        <label for="messageId">Message ID :</label>
+        <input type="number" id="messageId" name="messageId" required><br><br>
+
+        <label for="newContent">Nouveau message :</label>
+        <textarea id="newContent" name="newContent" required></textarea><br><br>
+
+        <input type="submit" value="Edit Message">
+    </form>
+</body>
+</html>

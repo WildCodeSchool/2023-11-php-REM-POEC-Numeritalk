@@ -1,0 +1,48 @@
+{% extends 'layout.html.twig' %}
+
+{% block stylesheet %}
+{{ parent() }}
+    <link rel="stylesheet" href="/assets/css/subject.css">
+    <link rel="stylesheet" href="/assets/css/categoryAdmin.css">
+    <link rel="stylesheet" href="/assets/css/home.css">
+{% endblock %}
+
+{% block content %}
+    <a href="/category" class="lien_retour" id="retourLink">Retour aux catégories</a>
+    <h1 class="titre_colore">Sujets</h1>
+    {% if user.uti_name is defined %}
+        <a class="bloc_liste_sujet" onclick="display('sujet_form')" id="add_sujet">Créer un sujet</a>
+        <form action="subjects/add?categoryId={{subjectList[0].idCategorie}}" method="POST" id="sujet_form">
+            <label for="subjectName">Nom du sujet :</label>
+            <input type="text" id="subjectName" name="subjectName" required>
+            <label for="messageContent">Message :</label>
+            <textarea id="messageContent" name="messageContent" required></textarea>
+            <input type="submit" value="Valider" name="submit">                
+        </form>
+    {% else %}
+        <p>Vous devez vous connecter pour créer un sujet.</p>
+    {% endif %}
+    <table id="table_sujets">
+        <thead>
+            <tr>
+                <td>Sujet</td>
+                <td>Auteur</td>
+                <td>Date de publication</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for subject in subjectList %}
+                <tr>
+                    <td class="td_sujet"><a href="messages?subjectId={{ subject.id }}">{{ subject.suj_name }}</a></td>
+                    <td>{{subject.uti_name}}</td>
+                    <td>{{subject.date_formatee}}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="2">Il n'y a pas encore de sujet dans cette catégorie. Voulez-vous en <a onclick="display('sujet_form')">ajouter un ?</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+

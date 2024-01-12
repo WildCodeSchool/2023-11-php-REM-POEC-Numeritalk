@@ -1,0 +1,67 @@
+.bloc_authentification{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    width: 300px;
+    height:55vh;
+    background-color: #D9D9D9;
+    overflow: hidden;
+    background-image: url("../images/carré.svg");
+    background-repeat: no-repeat;
+    background-size: 240px;
+    border-radius: 15px;
+}
+
+.titre_authentification{
+    margin: 35px 0;
+    color: black;
+    width: fit-content;
+}
+
+.form_authentification{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.champ_form{
+    margin: 10px 0;
+    border: none;
+    border-bottom: 2px solid gray;
+    padding: 7px;
+    background: none;
+    border-radius:5px;
+}
+
+.champ_form::placeholder{
+    color: #282727;
+}
+
+.champ_form:focus-visible{
+    border-bottom: 2px solid #282727;
+    outline: none;
+}
+
+.button_form{
+    margin: 20px 0;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(100, 96, 96);
+    border-radius: 10px;
+    padding: 5px 25px;
+    background-color: #54c5cb;
+    font-family: 'Belleza', sans-serif;
+    font-size: 18px;
+}
+
+.lien_oubli{
+    margin: 10px 0;
+    color: #282727;
+    text-decoration: none;
+}
+
+.lien_oubli:hover{
+    color: #2C1880;
+    text-decoration: underline;
+}

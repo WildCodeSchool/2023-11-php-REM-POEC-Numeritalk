@@ -1,0 +1,20 @@
+{% extends 'layout.html.twig' %}
+{% block title %}Dashboard Administrateur{% endblock %}
+
+{% block stylesheet %}
+{{ parent() }}
+    <link rel="stylesheet" href="/assets/css/dashboardAdmin.css">
+    <link rel="stylesheet" href="/assets/css/home.css">
+{% endblock %}
+
+{% block content %}
+    <div class="bloc_admin">
+        {% if (user.role == 2) %}
+            <h1 class="titre_colore"> Bonjour admin !</h1>
+            <a href="/admin/category" class="lien_dashboard">Gérer les catégories</a>
+        {% else %}
+            <h1>Vous n'êtes pas autorisé à accéder à cet espace !</h1>
+            <p>Veuillez retourner à <a href="/">l'accueil</a> pour vous connecter</p>
+        {% endif %}
+    </div>
+{% endblock %}

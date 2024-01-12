@@ -1,0 +1,18 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %} Catégories {% endblock %}
+
+{% block stylesheet %}
+{{ parent() }}
+    <link rel="stylesheet" href="/assets/css/category.css">
+    <link rel="stylesheet" href="/assets/css/home.css">
+{% endblock %}
+
+{% block content %}
+    <h1 class="titre_colore"> Liste des catégories </h1>
+    <div class="bloc_discussions">
+        {% for category in categoryList %}
+            <a href="subjects?id={{category.id}}">{{category.cat_name}}</a>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'layout.html.twig' %}
+
+{% block stylesheet %}
+{{ parent() }}
+    <link rel="stylesheet" href="/assets/css/message.css">
+    <link rel="stylesheet" href="/assets/css/categoryAdmin.css">
+    <link rel="stylesheet" href="/assets/css/home.css">
+{% endblock %}
+
+{% block content %}
+    <a href="/category" class="lien_retour" id="retourLink">Retour aux catégories</a>
+    <h1 class="titre_colore">Sujet : {{ messages[0].sujet}}</h1>
+    <div id="bloc_messages">
+        {% if messages is not empty %}
+            {% for message in messages %}
+                <div class="messages">
+                    <p class="title_messages">
+                        Utilisateur: {{ message.uti_name }} {{message.date_formatee}}
+                    </p>
+                    <hr>
+                    <p class="content_messages">
+                        {{ message.mes_contenu }}
+                    </p>
+                    {% if user.uti_name is defined and user.uti_name == message.uti_name %}
+                        <div class="bloc_bouton_message">
+                            <a class="button_messages" onclick="openEditForm('{{ message.id }}', '{{ message.mes_contenu | escape('js') }}')">
+                                <span class="text">Modifier</span>
+                            </a>
+                            <a class="button_messages" href="/messages/delete?messageId={{message.id}}">
+                                <span class="text">Supprimer</span>
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>Aucun message à afficher.</p>
+        {% endif %}
+    </div>
+    {% if user.uti_name is defined %}
+        <a onclick="displayForm()" class="button_messages" id="add_message">Poster un message</a>
+        <form action="messages/post?subjectId={{messages[0].id_sujet}}" method="POST" id="form_message">
+            <label for="messageContent">Message :</label>
+            <textarea id="messageContent" name="messageContent" required></textarea>
+            <input type="submit" value="Poster Message" name="submit" class="button_messages">
+        </form>
+        <div id="editForm" class="modal">
+            <div class="modal-content">
+                <span onclick="closeEditForm()">&times;</span>
+                <form action="/messages/update" method="POST" class="form_edit_message">
+                    <input type="hidden" id="editMessageId" name="messageId">
+                    <input type="hidden" id="editSubjectId" name="">
+                    <label for="editMessageContent">Nouveau message :</label>
+                    <textarea id="editMessageContent" name="newContent" ></textarea>
+                    <input type="submit" value="Editer Message" class="button_messages">
+                </form>
+            </div>
+        </div>
+    {% else %}
+        <p>Vous devez vous connecter pour poster un message.</p>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,37 @@
+.bloc_inscription{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    border-radius: 15px;
+    background-color: #D9D9D9;
+    padding: 20px;
+}
+
+.form_inscription{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 10px;
+    font-size: 18px;
+}
+
+.input_ligne{
+    margin: 10px 0px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.input_ligne label{
+    width: 130px;
+}
+
+.input_ligne input{
+    width: 200px;
+    background-color: white;
+    margin-left: 30px;
+    border-radius:5px;
+    padding:10px;
+}

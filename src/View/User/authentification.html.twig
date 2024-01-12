@@ -1,0 +1,27 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    Authentification
+{% endblock %}
+
+{% block stylesheet %}
+{{ parent() }}
+    <link rel="stylesheet" href="/assets/css/login.css">
+    <link rel="stylesheet" href="/assets/css/home.css">
+{% endblock %}
+
+{% block content %}
+
+
+        <div class="bloc_authentification">
+            <h1 class="titre_authentification">Authentification</h1>
+            <form method="POST" class="form_authentification">
+                <input type="text" name="username" placeholder="identifiant :" class="champ_form">
+                <input type="password" name="password" placeholder="Mot de passe :" class="champ_form">
+                <input type="submit" value="Se connecter" name="submit" class="button_form">
+            </form>
+            <a href="/" class="lien_oubli">Mot de passe oublié ?</a>
+        </div>
+
+{% endblock %}
+

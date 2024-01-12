@@ -1,0 +1,17 @@
+{% extends 'layout.html.twig' %}
+{% block title %}Profil {{user.uti_name}}{% endblock %}
+
+{% block stylesheet %}
+{{ parent() }}
+    <link rel="stylesheet" href="/assets/css/profile.css">
+    <link rel="stylesheet" href="/assets/css/home.css">
+{% endblock %}
+
+{% block content %}
+    <div class="bloc_profil">
+        <h1> Bienvenue sur ton profil</h1>
+        <div>
+            <p>Nombre de messsages postés : {{countMessage}} </p>
+        </div>
+    </div>
+{% endblock %}

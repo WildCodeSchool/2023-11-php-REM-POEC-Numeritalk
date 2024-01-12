@@ -1,0 +1,43 @@
+{% extends 'layout.html.twig' %}
+{% block title %}Espace catégories{% endblock %}
+
+{% block stylesheet %}
+{{ parent() }}
+    <link rel="stylesheet" href="/assets/css/categoryAdmin.css">
+    <link rel="stylesheet" href="/assets/css/home.css">
+{% endblock %}
+
+{% block content %}
+    <h1 class="titre_colore"> Bienvenue dans l'espace des catégories </h1>
+    <div class="input_ligne">
+        <div id="selection_categories">
+            <h2>Liste des catégories</h2>
+            {% for category in categoryList %}
+                <p class="form_selection_categories">
+                    {{category.cat_name}}
+                </p>
+            {% endfor %}
+        </div>
+        <div id="bloc_bouton_categories">
+            <a class="lien_categories" onclick="typeButtonClicked(this)" id="addLink">Ajouter une catégorie</a>
+            <a class="lien_categories" onclick="typeButtonClicked(this)" id="updateLink">Editer une catégorie</a>
+            <a class="lien_categories" onclick="typeButtonClicked(this)" id="deleteLink">Supprimer une catégorie</a>
+        </div>
+        <div id="form_categories">
+            <a class="lien_retour" onclick="typeButtonClicked(this)" id="retourLink">Retour</a>
+            <h2 id="titre_categories"></h2>
+            <form action="" method="post" id="formRadio">
+                <div id="bloc_selection_categories">
+                    {% for category in categoryList %}
+                        <div class="form_selection_categories">
+                            <label>{{category.cat_name}}</label>
+                            <input type="radio" name="categoryId" value={{category.id}}>
+                        </div>
+                    {% endfor %}
+                </div>
+                <input type="text" name="nameCategory" placeholder="Nom" id="name_category">
+                <input type="submit" value="Valider" id="categorie_button"></button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
